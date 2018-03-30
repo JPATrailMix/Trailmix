@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Trailmix</string>
+    <string name="title_activity_maps">Map</string>
+    <string name = "text">How long is your trip?</string>
+    <dimen name="text">350dp</dimen>
+    <string name = "button">Start!</string>
+
 </resources>
