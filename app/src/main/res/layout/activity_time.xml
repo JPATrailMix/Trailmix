@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Time"
-        tools:layout_editor_absoluteX="173dp"
-        tools:layout_editor_absoluteY="262dp" />
+        android:textSize="36sp"
+        tools:layout_editor_absoluteX="151dp"
+        tools:layout_editor_absoluteY="231dp" />
 </android.support.constraint.ConstraintLayout>
