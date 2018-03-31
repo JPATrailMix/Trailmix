@@ -20,39 +20,20 @@ public class TimeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_time);
         Bundle bundle = getIntent().getExtras();
 
-        /*Double time = bundle.getDouble("time");
-        TextView timeView = findViewById(R.id.timeView);
-        while(time > 0){
-            timeView.setText(time.toString());
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            time--;
-        }*/
-        final TextView tv = (TextView) findViewById( R.id.textView2);
-        new CountDownTimer(20*60000, 1000) {
-
+        new CountDownTimer(3000000, 1000) {
+            TextView tv = (TextView) findViewById( R.id.textView2);
             public void onTick(long millisUntilFinished) {
-                tv.setText("seconds remaining: " +new SimpleDateFormat("mm:ss:SS").format(new Date( millisUntilFinished)));
+                tv.setText("seconds remaining: " + millisUntilFinished / 1000);
             }
 
-            @Override
-            public void onFinish() {
-
-            }
-
-/*
             public void onFinish() {
                 tv.setText("done!");
             }
-*/
         }.start();
-        Intent intent2 = new Intent(this,FinishedActivity.class);
-        startActivity(intent2);
+    Intent intent2 = new Intent(this,FinishedActivity.class);
+    startActivity(intent2);
 
-    }
+}
     public static void showTime(View view){
 
     }

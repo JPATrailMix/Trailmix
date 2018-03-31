@@ -16,7 +16,8 @@ public class FinishedActivity extends AppCompatActivity {
         Intent intent3 = new Intent(this,MainActivity.class);
         startActivity(intent3);
     }
-    public static void onNo(View view){
-
+    public void onNo(View view){
+        finish();
+        System.exit(0);
     }
 }
