@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("PGA", "hi there");
         Song[] songs = PlaylistGenerator.createRandomSongList(5, 120, 300);
         Log.d("PGA","Songs: " + Arrays.toString(songs));
-        Log.d("PGA", "Playlist: " + PlaylistGenerator.generatePlaylist(new ArrayList<Song>(Arrays.asList(songs)), targetTime));*/
+        Log.d("PGA", "Playlist: " + PlaylistGenerator.generatePlaylist(new ArrayList<Song>(Arrays.asList(songs)), targetTime));
 
     }
     public void getDuration(View v){
