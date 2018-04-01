@@ -19,11 +19,9 @@ public class TimeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time);
         Bundle bundle = getIntent().getExtras();
-        Double time = bundle.getDouble("time");
-        int millis = (int)(time*60*1000);
-        CountDownTimer countDown = new CountDownTimer(millis, 1000) {
-            boolean finish = false;
-            TextView tv = (TextView) findViewById( R.id.time);
+
+        new CountDownTimer(3000000, 1000) {
+            TextView tv = (TextView) findViewById( R.id.textView2);
             public void onTick(long millisUntilFinished) {
                 tv.setText("seconds remaining: " + millisUntilFinished / 1000);
             }
@@ -33,7 +31,6 @@ public class TimeActivity extends AppCompatActivity {
             }
         }.start();
     Intent intent2 = new Intent(this,FinishedActivity.class);
-    intent2.putExtra("finish",true);
     startActivity(intent2);
 
 }
