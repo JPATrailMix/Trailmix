@@ -17,7 +17,8 @@ public class FinishedActivity extends AppCompatActivity {
         startActivity(intent3);
     }
     public void onNo(View view){
-        finish();
-        System.exit(0);
+        moveTaskToBack(true);
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(1);
     }
 }
