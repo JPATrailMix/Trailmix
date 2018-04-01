@@ -26,10 +26,10 @@ public class SongTree {
             for (Song s : this.songs) {
                 rootNode.addSong(s);
                 //System.out.println("Closest Playlist has length: " + closestPlaylist.getTime());
-				/*if(playlists.size()>0) {
-					System.out.println("playlists.size() > 0");
+				if(playlists.size()>0) {
+					System.out.println("Stopping song tree because playlists.size() > 0");
 					break;
-				}*/
+				}
                 // System.out.println(getPlaylists().size() + " possible playlist(s): " +
                 // getPlaylists());
             }
