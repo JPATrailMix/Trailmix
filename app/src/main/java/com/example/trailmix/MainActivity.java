@@ -26,14 +26,19 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void getDuration(View v){
+        System.out.println("Hello There This is Duration a;lsdkf;alsdkfj;aldjksf;aljksdf;lajksdf;lkajsd;flkja;sdlkfja;ldksfja;ldksfj");
+        Log.d("getDuration", "getDuration starting");
         EditText timeText = findViewById(R.id.editText);
         String timeStr = timeText.getText().toString();
 
-        Log.d("MainActivity", timeStr);
+        Log.d("getDuration", timeStr);
         Double timeD = Double.parseDouble(timeStr);
 
+        Log.d("getDuration", "parse double worked maybe");
+
         Intent intent = new Intent(this,TimeActivity.class);
-        intent.putExtra("time", timeD);
-        startActivity(intent);
+       intent.putExtra("time", timeD);
+       startActivity(intent);
+       Log.d("getDuration", "time activity intent started");
     }
 }
