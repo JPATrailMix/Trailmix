@@ -20,8 +20,9 @@ public class TimeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_time);
         Bundle bundle = getIntent().getExtras();
         Log.d("Countdown", "Countdown about to begin");
+        Double time = bundle.getDouble("time");
 
-        new CountDownTimer(3000000, 1000) {
+        new CountDownTimer((long)(time*1000*60), 1000) {
             TextView tv = (TextView) findViewById( R.id.time);
             public void onTick(long millisUntilFinished) {
                 tv.setText("seconds remaining: " + millisUntilFinished / 1000);
