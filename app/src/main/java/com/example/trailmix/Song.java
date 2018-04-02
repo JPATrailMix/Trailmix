@@ -6,21 +6,21 @@ package com.example.trailmix;
 
 public class Song implements Comparable {
     private int time;
-    private String id;
+    private String path;
 
     public Song() {
         time = 0;
-        this.id = "";
+        this.path = "";
     }
 
     public Song(int time) {
         this.time = time;
-        this.id = "";
+        this.path = "";
     }
 
     public Song(String id, int time) {
         this.time = time;
-        this.id = id;
+        this.path = id;
     }
 
     public String toString() {
