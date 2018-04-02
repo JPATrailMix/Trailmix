@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FinishedActivity"
-    android:background="@drawable/image">
+    android:background="@drawable/ic_blue_shapes">
 
     <TextView
         android:id="@+id/textView"

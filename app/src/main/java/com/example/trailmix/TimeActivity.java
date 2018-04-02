@@ -40,7 +40,8 @@ public class TimeActivity extends AppCompatActivity {
         startActivity(intent2);
     }
 
-    public static void showTime(View view){
-
+    public void onCancel(View view){
+        Intent intent2 = new Intent(this,FinishedActivity.class);
+        startActivity(intent2);
     }
 }
