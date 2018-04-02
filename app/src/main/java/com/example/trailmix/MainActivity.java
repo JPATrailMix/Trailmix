@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void getDuration(View v){
-        System.out.println("Hello There This is Duration a;lsdkf;alsdkfj;aldjksf;aljksdf;lajksdf;lkajsd;flkja;sdlkfja;ldksfja;ldksfj");
         Log.d("getDuration", "getDuration starting");
         EditText timeText = findViewById(R.id.editText);
         String timeStr = timeText.getText().toString();
