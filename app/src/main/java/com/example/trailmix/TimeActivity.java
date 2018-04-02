@@ -25,8 +25,9 @@ public class TimeActivity extends AppCompatActivity {
         new CountDownTimer(millis, 1000) {
             TextView tv = (TextView) findViewById( R.id.time);
             public void onTick(long millisUntilFinished) {
-                tv.setText("seconds remaining: " + millisUntilFinished / 1000);
-                Log.d("Countdown", "seconds remaining: " + millisUntilFinished / 1000);
+                long seconds = millisUntilFinished / 1000;
+                tv.setText(""+ seconds/60 +  ":" + seconds%60);
+                Log.d("Countdown", "" + seconds);
             }
 
             public void onFinish() {
