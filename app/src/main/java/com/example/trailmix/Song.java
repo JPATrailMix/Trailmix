@@ -7,20 +7,33 @@ package com.example.trailmix;
 public class Song implements Comparable {
     private int time;
     private String path;
+    private String name;
+    private String album;
+    private String artist;
+
 
     public Song() {
-        time = 0;
+        this.time = 0;
         this.path = "";
+        this.name = "";
+        this.album = "";
+        this.artist = "";
     }
 
     public Song(int time) {
         this.time = time;
         this.path = "";
+        this.name = "";
+        this.album = "";
+        this.artist = "";
     }
 
-    public Song(String id, int time) {
+    public Song(String path, int time) {
         this.time = time;
-        this.path = id;
+        this.path = path;
+        this.name = "";
+        this.album = "";
+        this.artist = "";
     }
 
     public String toString() {
@@ -45,6 +58,22 @@ public class Song implements Comparable {
 
     public Song copy() {
         return new Song(time);
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getAlbum() {
+        return album;
+    }
+
+    public String getArtist() {
+        return artist;
     }
 
 }
