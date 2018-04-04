@@ -16,7 +16,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Log.d("MainActivity", "Song Retriever Loading");
+        SongRetriever sr = new SongRetriever(this);
     }
     public void getDuration(View v){
         Log.d("getDuration", "getDuration starting");
