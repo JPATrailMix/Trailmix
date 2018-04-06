@@ -35,6 +35,13 @@ public class Song implements Comparable {
         this.album = "";
         this.artist = "";
     }
+    public Song(String name, String path, int time) {
+        this.time = time;
+        this.path = path;
+        this.name = name;
+        this.album = "";
+        this.artist = "";
+    }
 
     public String toString() {
         return "" + time;

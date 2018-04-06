@@ -29,13 +29,13 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d("getDuration", "parse double worked maybe");
 
-        long startTime = System.currentTimeMillis();
+        /*long startTime = System.currentTimeMillis();
         int targetTime = (int)(timeD*60);
         Log.d("PGA", "hi there, target time is " + targetTime + "s");
         Song[] songs = PlaylistGenerator.createRandomSongList(10000, 120, 300);
         Log.d("PGA","Songs: " + Arrays.toString(songs));
         Log.d("PGA", "Playlist: " + PlaylistGenerator.generatePlaylist(new ArrayList<Song>(Arrays.asList(songs)), targetTime));
-        Log.d("PGA", "Entire PGA took " + (System.currentTimeMillis() - startTime) + "ms to run");
+        Log.d("PGA", "Entire PGA took " + (System.currentTimeMillis() - startTime) + "ms to run");*/
 
         Intent intent = new Intent(this,TimeActivity.class);
        intent.putExtra("time", timeD);

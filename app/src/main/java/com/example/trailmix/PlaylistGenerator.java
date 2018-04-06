@@ -62,6 +62,9 @@ public class PlaylistGenerator {
         }
         return generatePlaylist(songs, targetTime);
     }
+    public static Playlist generatePlaylist(ArrayList<String> titles, ArrayList<String> paths, ArrayList<Integer> durations,int targetTime){
+        return generatePlaylist(generateSongs(titles,paths,durations),targetTime);
+    }
 
     public static Playlist generatePlaylist(ArrayList<Song> songs, int targetTime) {
         ArrayList<Song> origSongs = songs;
@@ -123,6 +126,15 @@ public class PlaylistGenerator {
 
         System.out.println("Final PlayList (out of tree " + tree.getPlaylists().size() + " possibilities: " + result);
         return result;
+    }
+
+    public static ArrayList<Song> generateSongs(ArrayList<String> titles, ArrayList<String> paths, ArrayList<Integer> durations){
+        ArrayList<Song> songs = new ArrayList<Song>();
+        if(titles.size() == paths.size()&& paths.size()==durations.size())
+            for(int i = 0; i < titles.size(); i++)
+                songs.add(new Song(titles.get(i),paths.get(i), durations.get(i));
+
+        return songs;
     }
 
     /*public static void main(String[] args) {
