@@ -64,4 +64,15 @@ public class SongRetriever {
         }
     }
 
+    public ArrayList<String> getSongNames() {
+        return songNames;
+    }
+
+    public ArrayList<Integer> getSongLengths() {
+        return songLengths;
+    }
+
+    public ArrayList<String> getSongPaths() {
+        return songPaths;
+    }
 }
