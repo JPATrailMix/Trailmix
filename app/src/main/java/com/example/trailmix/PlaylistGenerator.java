@@ -5,7 +5,6 @@ package com.example.trailmix;
  */
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 public class PlaylistGenerator {
@@ -132,7 +131,7 @@ public class PlaylistGenerator {
         ArrayList<Song> songs = new ArrayList<Song>();
         if(titles.size() == paths.size()&& paths.size()==durations.size())
             for(int i = 0; i < titles.size(); i++)
-                songs.add(new Song(titles.get(i),paths.get(i), durations.get(i));
+                songs.add(new Song(titles.get(i),paths.get(i),durations.get(i)));
 
         return songs;
     }
