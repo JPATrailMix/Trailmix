@@ -62,8 +62,8 @@ public class PlaylistGenerator {
         }
         return generatePlaylist(songs, targetTime);
     }
-    public static Playlist generatePlaylist(ArrayList<String> titles, ArrayList<String> paths, ArrayList<Integer> durations,int targetTime){
-        return generatePlaylist(generateSongs(titles,paths,durations),targetTime);
+    public static Playlist generatePlaylist(ArrayList<String> titles, ArrayList<Long> ids, ArrayList<Integer> durations,int targetTime){
+        return generatePlaylist(generateSongs(titles,ids,durations),targetTime);
     }
 
     public static Playlist generatePlaylist(ArrayList<Song> songs, int targetTime) {
@@ -128,11 +128,11 @@ public class PlaylistGenerator {
         return result;
     }
 
-    public static ArrayList<Song> generateSongs(ArrayList<String> titles, ArrayList<String> paths, ArrayList<Integer> durations){
+    public static ArrayList<Song> generateSongs(ArrayList<String> titles, ArrayList<Long> ids, ArrayList<Integer> durations){
         ArrayList<Song> songs = new ArrayList<Song>();
-        if(titles.size() == paths.size()&& paths.size()==durations.size())
+        if(titles.size() == ids.size()&& ids.size()==durations.size())
             for(int i = 0; i < titles.size(); i++)
-                songs.add(new Song(titles.get(i),paths.get(i),durations.get(i)));
+                songs.add(new Song(titles.get(i),ids.get(i),durations.get(i)));
 
         return songs;
     }
