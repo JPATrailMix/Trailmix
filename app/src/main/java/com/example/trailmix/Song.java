@@ -6,6 +6,7 @@ package com.example.trailmix;
 
 public class Song implements Comparable {
     private int time;
+    private long id;
     private String path;
     private String name;
     private String album;
@@ -13,6 +14,7 @@ public class Song implements Comparable {
 
 
     public Song() {
+        this.id = -1;
         this.time = 0;
         this.path = "";
         this.name = "";
@@ -21,6 +23,7 @@ public class Song implements Comparable {
     }
 
     public Song(int time) {
+        this.id = -1;
         this.time = time;
         this.path = "";
         this.name = "";
@@ -29,6 +32,7 @@ public class Song implements Comparable {
     }
 
     public Song(String path, int time) {
+        this.id = -1;
         this.time = time;
         this.path = path;
         this.name = "";
@@ -36,8 +40,18 @@ public class Song implements Comparable {
         this.artist = "";
     }
     public Song(String name, String path, int time) {
+        this.id = -1;
         this.time = time;
         this.path = path;
+        this.name = name;
+        this.album = "";
+        this.artist = "";
+    }
+
+    public Song(String name, long id, int time) {
+        this.id = id;
+        this.time = time;
+        this.path = "";
         this.name = name;
         this.album = "";
         this.artist = "";

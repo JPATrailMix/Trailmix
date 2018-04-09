@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d("getDuration", "parse double worked maybe");
         SongRetriever sr = new SongRetriever(this);
-        ArrayList<Song> songs = PlaylistGenerator.generateSongs(sr.getSongNames(),sr.getSongPaths(),sr.getSongLengths());
+        ArrayList<Song> songs = PlaylistGenerator.generateSongs(sr.getSongNames(),sr.getSongIds(),sr.getSongLengths());
         Playlist playlist = PlaylistGenerator.generatePlaylist(songs,(int)(timeD*60));
         long startTime = System.currentTimeMillis();
         int targetTime = (int)(timeD*60);
