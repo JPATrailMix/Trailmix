@@ -5,6 +5,7 @@ package com.example.trailmix;
  */
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class PlaylistGenerator {
@@ -136,13 +137,13 @@ public class PlaylistGenerator {
         return songs;
     }
 
-    /*public static void main(String[] args) {
+    public static void main(String[] args) {
         // TODO Auto-generated method stub
         int targetTime = 60 * 60;
         Song[] songs = createRandomSongList(5, 120, 300);
         System.out.println("Songs: " + Arrays.toString(songs));
         System.out.println("Playlist: " + generatePlaylist(new ArrayList<Song>(Arrays.asList(songs)), targetTime));
 
-    }*/
+    }
 
 }
