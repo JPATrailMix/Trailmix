@@ -12,13 +12,8 @@ public class FinishedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finished);
     }
-    public void onYes(View view){
+    public void onBack(View view){
         Intent intent3 = new Intent(this,MainActivity.class);
         startActivity(intent3);
-    }
-    public void onNo(View view){
-        moveTaskToBack(true);
-        android.os.Process.killProcess(android.os.Process.myPid());
-        System.exit(1);
     }
 }

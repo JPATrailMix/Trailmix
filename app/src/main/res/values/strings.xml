@@ -4,9 +4,13 @@
     <string name="text">How long is your trip?</string>
     <string name="minute">minute(s)</string>
     <string name="button">Start!</string>
-    <string name="textView">Your playlist has finished, would you like to start another one?</string>
+    <string name="textView">Your playlist has finished.</string>
+    <string name="back">Back to the home screen</string>
     <string name="time">Time</string>
     <string name="cancel">Cancel</string>
+    <string name="sure">Are you sure?</string>
+    <string name="confirm">Yes</string>
+    <string name="nonconfirm">No</string>
     <string name="load">Loading...</string>
 
 </resources>
