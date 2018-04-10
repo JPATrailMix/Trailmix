@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
         Log.d("getDuration", "getDuration starting");
         EditText timeText = findViewById(R.id.editText);
         String timeStr = timeText.getText().toString();
+        if(timeStr.isEmpty())
+            timeStr = "0";
 
         Log.d("getDuration", timeStr);
         Double timeD = Double.parseDouble(timeStr);

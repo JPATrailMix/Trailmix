@@ -8,7 +8,7 @@
     <string name="back">Back to the home screen</string>
     <string name="time">Time</string>
     <string name="cancel">Cancel</string>
-    <string name="sure">Are you sure?</string>
+    <string name="sure">Are you sure you want to cancel?</string>
     <string name="confirm">Yes</string>
     <string name="nonconfirm">No</string>
     <string name="load">Loading...</string>
