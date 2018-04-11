@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -60,10 +61,10 @@ public class SongRetriever {
 
         }
         for(int i=0; i<songIds.size();i++){
-            Log.d("Songs", "Name: " +songNames.get(i));
-            Log.d("Songs", "Song Length; "+ songLengths.get(i));
-            Log.d("Songs", "File Path: "+ songIds.get(i));
-            Log.d("Songs", "****************");
+            Log.d("Music", "Name: " +songNames.get(i));
+            Log.d("Music", "Song Length; "+ songLengths.get(i));
+            Log.d("Music", "File Path: "+ songIds.get(i));
+            Log.d("Music", "******************************");
         }
     }
 

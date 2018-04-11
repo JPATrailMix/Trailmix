@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.EditText;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,9 +28,11 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d("getDuration", "parse double worked maybe");
         SongRetriever sr = new SongRetriever(this);
+        long startTime = System.currentTimeMillis();
+
         ArrayList<Song> songs = PlaylistGenerator.generateSongs(sr.getSongNames(),sr.getSongIds(),sr.getSongLengths());
         Playlist playlist = PlaylistGenerator.generatePlaylist(songs,(int)(timeD*60));
-        long startTime = System.currentTimeMillis();
+
         int targetTime = (int)(timeD*60);
         Log.d("PGA", "hi there, target time is " + targetTime + "s");
         Log.d("PGA", "Playlist: " + playlist);
@@ -41,5 +42,6 @@ public class MainActivity extends AppCompatActivity {
        intent.putExtra("time", timeD);
        startActivity(intent);
        Log.d("getDuration", "time activity intent started");
+       SongsPlayer sp = new SongsPlayer(playlist.getSongs(),this);
     }
 }

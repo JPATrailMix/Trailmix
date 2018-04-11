@@ -6,6 +6,11 @@ package com.example.trailmix;
 
 public class Song implements Comparable {
     private int time;
+
+    public long getId() {
+        return id;
+    }
+
     private long id;
     private String path;
     private String name;
@@ -58,7 +63,7 @@ public class Song implements Comparable {
     }
 
     public String toString() {
-        return "" + time;
+        return "" + name;
     }
 
     public int getTime() {
