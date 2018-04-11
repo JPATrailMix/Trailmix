@@ -27,7 +27,7 @@ public class TimeActivity extends AppCompatActivity {
             TextView tv = (TextView) findViewById(R.id.time);
             public void onTick(long millisUntilFinished) {
                 long seconds = millisUntilFinished / 1000;
-                if(seconds <= 9){
+                if(seconds%60 < 10){
                     tv.setText(""+ seconds/60 +  ":0" + seconds%60);
                 }
                 else {
