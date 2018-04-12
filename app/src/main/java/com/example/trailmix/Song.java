@@ -63,7 +63,7 @@ public class Song implements Comparable {
     }
 
     public String toString() {
-        return "" + name;
+        return "" + name + ", " + time + "s";
     }
 
     public int getTime() {
