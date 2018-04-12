@@ -15,20 +15,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d("MainActivity", "Song Retriever Loading");
+        Log.d("Music", "Song Retriever Loading");
     }
     public void getDuration(View v){
-        Log.d("getDuration", "getDuration starting");
+        Log.d("Music", "getDuration starting");
         EditText timeText = findViewById(R.id.editText);
         String timeStr = timeText.getText().toString();
         if(timeStr.isEmpty())
             timeStr = "0";
 
-        Log.d("getDuration", timeStr);
+        Log.d("Music", timeStr);
         Double timeD = Double.parseDouble(timeStr);
-        Log.d("PGA", "TargetTime = " + timeD*60);
+        Log.d("Music", "TargetTime = " + timeD*60);
 
-        Log.d("getDuration", "parse double worked maybe");
+        Log.d("Music", "parse double worked maybe");
         SongRetriever sr = new SongRetriever(this);
         long startTime = System.currentTimeMillis();
 
@@ -36,14 +36,14 @@ public class MainActivity extends AppCompatActivity {
         Playlist playlist = PlaylistGenerator.generatePlaylist(songs,(int)(timeD*60));
 
         int targetTime = (int)(timeD*60);
-        Log.d("PGA", "hi there, target time is " + targetTime + "s");
-        Log.d("PGA", "Playlist: " + playlist);
-        Log.d("PGA", "Entire PGA took " + (System.currentTimeMillis() - startTime) + "ms to run");
+        Log.d("Music", "hi there, target time is " + targetTime + "s");
+        Log.d("Music", "Playlist: " + playlist);
+        Log.d("Music", "Entire PGA took " + (System.currentTimeMillis() - startTime) + "ms to run");
 
         Intent intent = new Intent(this,TimeActivity.class);
        intent.putExtra("time", timeD);
        startActivity(intent);
-       Log.d("getDuration", "time activity intent started");
+       Log.d("Music", "time activity intent started");
        SongsPlayer sp = new SongsPlayer(playlist.getSongs(),this);
     }
 }

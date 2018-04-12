@@ -29,20 +29,30 @@ public class SongsPlayer {
     }
 
     public void startPlayer() throws IOException {
-        for (int i=0; i<songs.size();i++) {
 
-            long id = songs.get(i).getId();
+        if(songs.size() != 0) {
+            player = new MediaPlayer();
+            long id = songs.get(0).getId();
             Uri contentUri = ContentUris.withAppendedId(
                     android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, id);
-
-            player = new MediaPlayer();
             player.setAudioStreamType(AudioManager.STREAM_MUSIC);
             player.setDataSource(activity.getApplicationContext(), contentUri);
-
             player.prepare();
             player.start();
-            Log.d("Music", "Name: " + songs.get(i).getName());
-            Log.d("Music", "Artist: " + songs.get(i).getArtist());
+            Log.d("Music", "Name: " + songs.get(0).getName());
+            Log.d("Music", "Artist: " + songs.get(0).getArtist());
+            player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                public void onCompletion(MediaPlayer mp) {
+                    mp.stop();
+                    songs.remove(0);
+                    try {
+                        startPlayer();
+                    }
+                    catch(IOException e){
+                        e.printStackTrace();
+                    }
+                }
+            });
         }
     }
 }
