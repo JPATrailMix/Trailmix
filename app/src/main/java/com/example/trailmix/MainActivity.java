@@ -21,6 +21,10 @@ public class MainActivity extends AppCompatActivity {
         Log.d("Music", "getDuration starting");
         EditText timeText = findViewById(R.id.editText);
         String timeStr = timeText.getText().toString();
+//        while(timeStr.isEmpty()||timeStr.equals("0")){
+//            timeText = findViewById(R.id.editText);
+//            timeStr = timeText.getText().toString();
+//        }
         if(timeStr.isEmpty())
             timeStr = "0";
 
