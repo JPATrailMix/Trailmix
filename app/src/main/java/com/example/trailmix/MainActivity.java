@@ -1,6 +1,7 @@
 package com.example.trailmix;
 
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,8 +33,7 @@ public class MainActivity extends AppCompatActivity {
         Double timeD = Double.parseDouble(timeStr);
         Log.d("Music", "TargetTime = " + timeD*60);
 
-        Log.d("Music", "parse double worked maybe");
-        SongRetriever sr = new SongRetriever(this);
+       /* SongRetriever sr = new SongRetriever(this);
         long startTime = System.currentTimeMillis();
 
         ArrayList<Song> songs = PlaylistGenerator.generateSongs(sr.getSongNames(),sr.getSongIds(),sr.getSongLengths());
@@ -44,10 +44,12 @@ public class MainActivity extends AppCompatActivity {
         Log.d("Music", "Playlist: " + playlist);
         Log.d("Music", "Entire PGA took " + (System.currentTimeMillis() - startTime) + "ms to run");
 
-        Intent intent = new Intent(this,TimeActivity.class);
-       intent.putExtra("time", timeD);
+        SongsPlayer sp = new SongsPlayer(playlist.getSongs(),this);*/
+       Intent intent = new Intent(this,TimeActivity.class);
+       intent.putExtra("MinutesTime", timeD);
+
        startActivity(intent);
        Log.d("Music", "time activity intent started");
-       SongsPlayer sp = new SongsPlayer(playlist.getSongs(),this);
+
     }
 }

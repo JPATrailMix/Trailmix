@@ -11,9 +11,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class SongsPlayer {
-    ArrayList <Song> songs;
-    MediaPlayer player;
-    Activity activity;
+    private ArrayList <Song> songs;
+    private MediaPlayer player;
+    private Activity activity;
+    private boolean stopped = false;
 
 
     public SongsPlayer (ArrayList<Song> songs, Activity act)  {
@@ -25,7 +26,10 @@ public class SongsPlayer {
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    public MediaPlayer getPlayer() {
+        return player;
     }
 
     public void startPlayer() throws IOException {
@@ -46,7 +50,8 @@ public class SongsPlayer {
                     mp.stop();
                     songs.remove(0);
                     try {
-                        startPlayer();
+                        if(!stopped)
+                            startPlayer();
                     }
                     catch(IOException e){
                         e.printStackTrace();
@@ -55,4 +60,11 @@ public class SongsPlayer {
             });
         }
     }
+
+    public void stop(){
+        player.stop();
+        stopped = true;
+    }
+
+
 }
