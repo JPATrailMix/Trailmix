@@ -1,5 +1,5 @@
 package com.example.trailmix;
-
+/*Author: Patrick Tan*/
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 

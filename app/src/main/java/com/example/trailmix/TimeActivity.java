@@ -1,5 +1,5 @@
 package com.example.trailmix;
-
+/*Author: Patrick Tan*/
 import android.content.Intent;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +23,7 @@ public class TimeActivity extends AppCompatActivity {
         Log.d("Countdown", "Countdown about to begin");
         Double time = bundle.getDouble("time");
         int millis = (int)(time*60*1000);
+        //timer
         new CountDownTimer(millis, 1000) {
             TextView tv = (TextView) findViewById(R.id.time);
             public void onTick(long millisUntilFinished) {
@@ -46,7 +47,10 @@ public class TimeActivity extends AppCompatActivity {
         Intent intent2 = new Intent(this,FinishedActivity.class);
         startActivity(intent2);
     }
+    public void onSkip(View view){
 
+    }
+//when the cancel button is activated, there is a confirmation.
     public void onCancel(View view){
 
         Button cancel = (Button) findViewById(R.id.cancel);
@@ -59,8 +63,7 @@ public class TimeActivity extends AppCompatActivity {
         nonconfirm.setVisibility(View.VISIBLE);
     }
     public void onYes(View view){
-        Intent intent2 = new Intent(this,FinishedActivity.class);
-        startActivity(intent2);
+        startFinishedActivity();
     }
     public void onNo(View view){
         TextView sure = (TextView) findViewById(R.id.sure);
