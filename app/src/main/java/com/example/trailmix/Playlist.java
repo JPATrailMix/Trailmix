@@ -2,6 +2,7 @@ package com.example.trailmix;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Random;
 
 /**
  * Created by andrewgoering on 3/31/18.
@@ -83,6 +84,17 @@ public class Playlist implements Comparable {
             return len1 - len2;
         } else
             throw new ClassCastException("Playlist object expected");
+
+    }
+
+    public void shuffle(){
+        Random rand = new Random();
+        for(int i = songs.size()-1; i > 0; i--){
+            int n = rand.nextInt(i+1);
+            Song s = songs.get(n);
+            songs.set(n,songs.get(i));
+            songs.set(i,s);
+        }
 
     }
 

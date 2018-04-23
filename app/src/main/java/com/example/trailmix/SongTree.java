@@ -4,6 +4,8 @@ package com.example.trailmix;
  * Created by andrewgoering on 3/31/18.
  */
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,6 +19,7 @@ public class SongTree {
 
     public SongTree(Song[] songs, int targetTime, boolean node) {
         if (node) {
+            long startTime = System.currentTimeMillis();
             playlists = new ArrayList<Playlist>();
             this.songs = songs;
             Arrays.sort(this.songs);
@@ -26,8 +29,8 @@ public class SongTree {
             for (Song s : this.songs) {
                 rootNode.addSong(s);
                 //System.out.println("Closest Playlist has length: " + closestPlaylist.getTime());
-				if(playlists.size()>0) {
-					System.out.println("Stopping song tree because playlists.size() > 0");
+				if(playlists.size() > 0 && System.currentTimeMillis()-startTime > 2000) {
+					Log.d("SongTree","Stopping song tree because playlists.size() > 0 and it has been running for more than 2 seconds");
 					break;
 				}
                 // System.out.println(getPlaylists().size() + " possible playlist(s): " +
@@ -51,6 +54,7 @@ public class SongTree {
                         Playlist newP = Playlist.copy(p);
                         newP.add(s);
                         tree.add(newP);
+                        submitPlaylistWithError(newP);
                     } else if (targetTime - p.getTime() == s.getTime()) {
                         Playlist newP = Playlist.copy(p);
                         newP.add(s);
@@ -58,7 +62,8 @@ public class SongTree {
 						/*tree.remove(i);
 						i--;
 						r++;*/
-                    } else {
+                    }
+                    else {
                         tree.remove(i);
                         i--;
                         r++;
@@ -67,8 +72,8 @@ public class SongTree {
                 }
                 //System.out.println(tree);
                 //System.out.println(playlists.size());
-                if(playlists.size() > 0)
-                    break;
+                /*if(playlists.size() > 0)
+                    break;*/
             }
         }
         Collections.sort(playlists);
