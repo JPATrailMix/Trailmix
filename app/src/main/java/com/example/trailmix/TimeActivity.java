@@ -1,5 +1,8 @@
 package com.example.trailmix;
-
+/*
+Author: Patrick Tan
+This program plays music and counts how much time there is remaining.
+ */
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.CountDownTimer;

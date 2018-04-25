@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.trailmix">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -9,7 +14,9 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-    <!-- Allows for file reading --> <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+    <!-- Allows for file reading -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <!-- app icon -->
     <application
         android:allowBackup="true"
@@ -37,14 +44,15 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCd5QwvmCRS-Ca4Jg0wyXkgVoyEgpUMo-A" />
-    <!-- This is all of the activities -->
+            android:value="AIzaSyASVU_Ws92GaMXBNhtREbNYXR3WBsbqDP0" />
+        <!-- This is all of the activities -->
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity android:name=".FinishedActivity" />
         <activity android:name=".TimeActivity" />
-        <activity android:name=".LoadingActivity"></activity>
+        <activity android:name=".LoadingActivity" />
+        <activity android:name=".LocationActivity"></activity>
     </application>
 
 </manifest>

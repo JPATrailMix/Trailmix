@@ -1,5 +1,9 @@
 package com.example.trailmix;
 
+/*
+Author: Patrick Tan
+This activity is mainly focused on the google maps API.
+ */
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
@@ -22,6 +26,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+//        // Construct a GeoDataClient.
+//        mGeoDataClient = Places.getGeoDataClient(this, null);
+//
+//        // Construct a PlaceDetectionClient.
+//        mPlaceDetectionClient = Places.getPlaceDetectionClient(this, null);
+//
+//        // Construct a FusedLocationProviderClient.
+//        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
     }
     @Override
     public void onMapReady(GoogleMap googleMap) {
