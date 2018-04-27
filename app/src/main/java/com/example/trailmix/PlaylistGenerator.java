@@ -57,16 +57,16 @@ public class PlaylistGenerator {
 
     }
 
-    public static Playlist generatePlaylist(ArrayList<String> ids, ArrayList<Integer> times, int targetTime) throws IOException {
+    public static Playlist generatePlaylist(ArrayList<String> paths, ArrayList<Integer> times, int targetTime) throws IOException {
         ArrayList<Song> songs = new ArrayList<Song>();
-        for(int i = 0; i < ids.size(); i++) {
-            songs.add(new Song(ids.get(i), times.get(i)));
+        for(int i = 0; i < paths.size(); i++) {
+            songs.add(new Song(paths.get(i), times.get(i)));
         }
         return generatePlaylist(songs, targetTime);
     }
-    public static Playlist generatePlaylist(ArrayList<String> titles, ArrayList<Long> ids, ArrayList<Integer> durations,int targetTime) throws IOException{
+   /* public static Playlist generatePlaylist(ArrayList<String> titles, ArrayList<Long> ids, ArrayList<Integer> durations,int targetTime) throws IOException{
         return generatePlaylist(generateSongs(titles,ids,durations),targetTime);
-    }
+    }*/
 
     public static Playlist generatePlaylist(ArrayList<Song> songs, int targetTime) throws IOException{
         removeShortSongs(songs);
@@ -135,11 +135,20 @@ public class PlaylistGenerator {
             throw new IOException("No Songs besides ringtones");
     }
 
-    public static ArrayList<Song> generateSongs(ArrayList<String> titles, ArrayList<Long> ids, ArrayList<Integer> durations){
+    /*public static ArrayList<Song> generateSongs(ArrayList<String> titles, ArrayList<Long> ids, ArrayList<Integer> durations){
         ArrayList<Song> songs = new ArrayList<Song>();
         if(titles.size() == ids.size()&& ids.size()==durations.size())
             for(int i = 0; i < titles.size(); i++)
                 songs.add(new Song(titles.get(i),ids.get(i),durations.get(i)));
+
+        return songs;
+    }*/
+
+    public static ArrayList<Song> generateSongs(ArrayList<String> titles, ArrayList<String> paths, ArrayList<Integer> durations){
+        ArrayList<Song> songs = new ArrayList<Song>();
+        if(titles.size() == paths.size()&& paths.size()==durations.size())
+            for(int i = 0; i < titles.size(); i++)
+                songs.add(new Song(titles.get(i),paths.get(i),durations.get(i)));
 
         return songs;
     }
