@@ -14,5 +14,6 @@
     <string name="confirm">Yes</string>
     <string name="nonconfirm">No</string>
     <string name="load">Loading...</string>
+    <string name="str_atv_places">Enter Place Here</string>
 
 </resources>

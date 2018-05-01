@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.trailmix">
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -16,7 +13,19 @@
 
     <!-- Allows for file reading -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <permission
+        android:name="in.wptrafficanalyzer.locationdistancetimemapv2.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
 
+    <uses-permission android:name="in.wptrafficanalyzer.locationdistancetimemapv2.permission.MAPS_RECEIVE" />
     <!-- app icon -->
     <application
         android:allowBackup="true"
@@ -44,7 +53,10 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyASVU_Ws92GaMXBNhtREbNYXR3WBsbqDP0" />
+            android:value="AIzaSyBLFfayDV5M18_7tn3YoQkFItIsQC3-J44" />
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="YOUR_ANDROID_API_KEY" />
         <!-- This is all of the activities -->
         <activity
             android:name=".MapsActivity"
@@ -52,7 +64,6 @@
         <activity android:name=".FinishedActivity" />
         <activity android:name=".TimeActivity" />
         <activity android:name=".LoadingActivity" />
-        <activity android:name=".LocationActivity"></activity>
     </application>
 
 </manifest>

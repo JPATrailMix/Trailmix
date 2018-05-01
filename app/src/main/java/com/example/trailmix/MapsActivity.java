@@ -4,8 +4,11 @@ package com.example.trailmix;
 Author: Patrick Tan
 This activity is mainly focused on the google maps API.
  */
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -43,5 +46,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng WPI = new LatLng(42.2746, -71.8063);
         mMap.addMarker(new MarkerOptions().position(WPI).title("WPI"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(WPI));
-    }
+
+        }
 }
