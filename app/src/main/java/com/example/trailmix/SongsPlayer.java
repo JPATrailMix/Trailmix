@@ -36,11 +36,16 @@ public class SongsPlayer {
 
         if(songs.size() != 0) {
             player = new MediaPlayer();
-            long id = songs.get(0).getId();
-            Uri contentUri = ContentUris.withAppendedId(
-                    android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, id);
-            player.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            player.setDataSource(activity.getApplicationContext(), contentUri);
+            if(songs.get(0).getPath()==null) {
+                long id = songs.get(0).getId();
+                Uri contentUri = ContentUris.withAppendedId(
+                        android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, id);
+                player.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                player.setDataSource(activity.getApplicationContext(), contentUri);
+            }
+            else{
+                player.setDataSource(songs.get(0).getPath());
+            }
             player.prepare();
             player.start();
             Log.d("Music", "Name: " + songs.get(0).getName());

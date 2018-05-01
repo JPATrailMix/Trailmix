@@ -17,21 +17,19 @@ import java.util.ArrayList;
 public class SongRetriever {
     private ArrayList<String> songNames;
     private ArrayList<String> songLengths1;
-    private ArrayList<Integer> songIDs1;
-    private ArrayList<Long> songIds;
+    private ArrayList<String> songPaths;
     private ArrayList<Integer> songLengths;
 
     public SongRetriever(Activity act){
+        songPaths = new ArrayList<String>();
         songNames = new ArrayList<String>();
         songLengths1= new ArrayList<String>();
-        songIDs1 = new ArrayList<Integer>();
         songLengths = new ArrayList<Integer>();
-        songIds = new ArrayList<Long>();
         getMusic(act);
     }
 
     public void getMusic(Activity act){
-        ContentResolver musicResolver = act.getContentResolver();
+       /* ContentResolver musicResolver = act.getContentResolver();
         Uri musicUri = android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
         Cursor musicCursor = musicResolver.query(musicUri, null, null, null, null);
 
@@ -59,12 +57,36 @@ public class SongRetriever {
             songLengths.add(Integer.parseInt(songLengths1.get(i))/1000);
             songIds.add((long)songIDs1.get(i));
 
+        }*/
+
+        ContentResolver contentResolver = act.getContentResolver();
+        Uri songUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+        Cursor songCursor = contentResolver.query(songUri, null,null,null,null);
+
+        if(songCursor != null && songCursor.moveToFirst()){
+            int songTitle = songCursor.getColumnIndex(MediaStore.Audio.Media.TITLE);
+            int songArtist = songCursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
+            int songLocation = songCursor.getColumnIndex(MediaStore.Audio.Media.DATA);
+            int songDuration = songCursor.getColumnIndex(MediaStore.Audio.Media.DURATION);
+
+            do{
+                String thisTitle = songCursor.getString(songTitle);
+                String thisDuration = songCursor.getString(songDuration);
+                String currentLocation = songCursor.getString(songLocation);
+                songLengths1.add(thisDuration);
+                songPaths.add(currentLocation);
+                songNames.add(thisTitle);
+            } while(songCursor.moveToNext());
         }
-        for(int i=0; i<songIds.size();i++){
+        Log.d("Music", "Music info retrieved:");
+        for(int i=0; i<songPaths.size();i++){
             Log.d("Music", "Name: " +songNames.get(i));
-            Log.d("Music", "Song Length; "+ songLengths.get(i));
-            Log.d("Music", "File Path: "+ songIds.get(i));
+            Log.d("Music", "Song Length; "+ songLengths1.get(i));
+            Log.d("Music", "File Path: "+ songPaths.get(i));
             Log.d("Music", "******************************");
+        }
+        for(int i=0; i<songLengths1.size(); i++){
+            songLengths.add(Integer.parseInt(songLengths1.get(i))/1000);
         }
     }
 
@@ -76,7 +98,11 @@ public class SongRetriever {
         return songLengths;
     }
 
-    public ArrayList<Long> getSongIds() {
+   /* public ArrayList<Long> getSongIds() {
         return songIds;
+    }*/
+
+    public ArrayList<String> getSongPaths() {
+        return songPaths;
     }
 }

@@ -32,14 +32,15 @@ public class TimeActivity extends AppCompatActivity {
         SongRetriever sr = new SongRetriever(this);
         long startTime = System.currentTimeMillis();
 
-        ArrayList<Song> songs = PlaylistGenerator.generateSongs(sr.getSongNames(),sr.getSongIds(),sr.getSongLengths());
+        ArrayList<Song> songs = PlaylistGenerator.generateSongs(sr.getSongNames(),sr.getSongPaths(),sr.getSongLengths());
+        Log.d("Music", "ArrayList of songs right before the PGA runs:" + songs);
         try {
             Playlist playlist = PlaylistGenerator.generatePlaylist(songs, (int) (time * 60));
 
             int targetTime = (int) (time * 60);
             Log.d("Music", "hi there, target time is " + targetTime + "s");
             Log.d("Music", "Playlist: " + playlist);
-            Log.d("Music", "Entire PGA took " + (System.currentTimeMillis() - startTime) + "ms to run");
+            Log.d("Music", "Entire PGA and song retrieval took " + (System.currentTimeMillis() - startTime) + "ms to run");
 
             songsPlayer = new SongsPlayer(playlist.getSongs(), this);
 
