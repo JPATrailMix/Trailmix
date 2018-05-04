@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 /**
  * Created by andrewgoering on 4/2/18.
+ * I figured out how to do this using this tutorial: https://www.youtube.com/watch?time_continue=1&v=kf2fxYLOiSo
  */
 
 public class SongRetriever {

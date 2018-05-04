@@ -4,6 +4,8 @@ package com.example.trailmix;
  * Created by andrewgoering on 3/31/18.
  */
 
+import android.util.Log;
+
 import java.io.IOError;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -71,7 +73,7 @@ public class PlaylistGenerator {
     public static Playlist generatePlaylist(ArrayList<Song> songs, int targetTime) throws IOException{
         removeShortSongs(songs);
         if(songs.size() != 0) {
-            ArrayList<Song> origSongs = songs;
+            //ArrayList<Song> origSongs = songs;
             Random rand = new Random();
             int shortListLength = 15;
             Playlist randomList = new Playlist();
@@ -82,7 +84,7 @@ public class PlaylistGenerator {
             Playlist closestPlaylist = new Playlist();
             do {
                 int c = 0;
-                songs = (ArrayList<Song>) origSongs.clone();
+                //songs = (ArrayList<Song>) origSongs.clone();
                 while (randomList.getTime() < targetTime - 1200 || (c > 0 && randomList.getTime() < targetTime)) {
                     if (songs.size() > 0) {
                         int r = rand.nextInt(songs.size());
@@ -164,17 +166,35 @@ public class PlaylistGenerator {
         System.out.println("After Remove Short Songs: " +  songs);
     }
 
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        int targetTime = 60 * 60;
-        Song[] songs = createRandomSongList(5, 120, 300);
-        System.out.println("Songs: " + Arrays.toString(songs));
-        try {
-            System.out.println("Playlist: " + generatePlaylist(new ArrayList<Song>(Arrays.asList(songs)), targetTime));
+    public static void replaceSong(Playlist p, ArrayList<Song> songs, ArrayList<Song> origSongs, long replacementLength, int index){
+        Log.d("Music", "PlaylistGenerator.replaceSong starting");
+        ArrayList<Song> playlistSongs = p.getSongs();
+        int goodFitIndex = 0;
+        if(songs.size() != 0) {
+            Song goodFit = songs.get(0);
+            for (int i = 0; i < songs.size(); i++) {
+                Song s = songs.get(i);
+                if (Math.abs(s.getTime() - replacementLength) < Math.abs(goodFit.getTime() - replacementLength)) {
+                    goodFit = s;
+                    goodFitIndex = i;
+                }
+            }
+            songs.remove(goodFitIndex);
+            playlistSongs.remove(index);
+            playlistSongs.add(goodFit);
         }
-        catch(IOException e){
-            e.printStackTrace();
+        else{
+            if(origSongs.size() != 0) {
+                Song goodFit = songs.get(0);
+                for (Song i : origSongs) {
+                    if (Math.abs(i.getTime() - replacementLength) < Math.abs(goodFit.getTime() - replacementLength) && i.getPath().equals(playlistSongs.get(index)))
+                        goodFit = i;
+                }
+                playlistSongs.remove(index);
+                playlistSongs.add(goodFit);
+            }
         }
+        Log.d("Music", "PlaylistGenerator.replaceSong finished");
 
     }
 
