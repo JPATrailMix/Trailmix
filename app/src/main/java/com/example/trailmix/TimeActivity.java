@@ -27,7 +27,7 @@ public class TimeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time);
         Bundle bundle = getIntent().getExtras();
-
+//Time source code: https://developer.android.com/reference/android/os/CountDownTimer
         double time = bundle.getDouble("MinutesTime");
         SongRetriever sr = new SongRetriever(this);
         long startTime = System.currentTimeMillis();
