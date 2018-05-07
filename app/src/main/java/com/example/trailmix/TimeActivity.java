@@ -22,6 +22,11 @@ import java.util.Date;
 
 public class TimeActivity extends AppCompatActivity {
     private SongsPlayer songsPlayer;
+    private Playlist playlist;
+    private ArrayList<Song> songs;
+    private ArrayList<Song> origSongs;
+    private long timerTimeRemaining;
+    private CountDownTimer timer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,11 +36,11 @@ public class TimeActivity extends AppCompatActivity {
         double time = bundle.getDouble("MinutesTime");
         SongRetriever sr = new SongRetriever(this);
         long startTime = System.currentTimeMillis();
-
-        ArrayList<Song> songs = PlaylistGenerator.generateSongs(sr.getSongNames(),sr.getSongPaths(),sr.getSongLengths());
+        songs = PlaylistGenerator.generateSongs(sr.getSongNames(),sr.getSongPaths(),sr.getSongLengths());
+        origSongs = (ArrayList<Song>) songs.clone();
         Log.d("Music", "ArrayList of songs right before the PGA runs:" + songs);
         try {
-            Playlist playlist = PlaylistGenerator.generatePlaylist(songs, (int) (time * 60));
+            playlist = PlaylistGenerator.generatePlaylist(songs, (int) (time * 60));
 
             int targetTime = (int) (time * 60);
             Log.d("Music", "hi there, target time is " + targetTime + "s");
@@ -46,10 +51,11 @@ public class TimeActivity extends AppCompatActivity {
 
             Log.d("Countdown", "Countdown about to begin");
             int millis = (int) (time * 60 * 1000);
-            new CountDownTimer(millis, 1000) {
+            timer = new CountDownTimer(millis, 1000) {
                 TextView tv = (TextView) findViewById(R.id.time);
 
                 public void onTick(long millisUntilFinished) {
+
                     long seconds = millisUntilFinished / 1000;
                     if (seconds % 60 < 10) {
                         tv.setText("" + seconds / 60 + ":0" + seconds % 60);
@@ -57,10 +63,12 @@ public class TimeActivity extends AppCompatActivity {
                         tv.setText("" + seconds / 60 + ":" + seconds % 60);
                     }
                     Log.d("Countdown", "" + seconds);
+                    timerTimeRemaining = seconds;
                 }
 
                 public void onFinish() {
                     tv.setText("done!");
+                    songsPlayer.stop();
                     startFinishedActivity();
                 }
             }.start();
@@ -102,5 +110,25 @@ public class TimeActivity extends AppCompatActivity {
         nonconfirm.setVisibility(View.INVISIBLE);
         Button cancel = (Button) findViewById(R.id.cancel);
         cancel.setVisibility(View.VISIBLE);
+    }
+
+    public void onSkip(View view){
+        if(timerTimeRemaining > 30) {
+            Log.d("Music", "Starting TimeActivity.onSkip");
+            PlaylistGenerator.replaceSong(playlist, songs, origSongs, songsPlayer.getRemainingSongTime(), 0);
+            Log.d("Music", "Finished switching song in playlist in TimeActivity.onSkip");
+            Log.d("Music", "New playlist after PlaylistGenerator.replaceSong: " + playlist);
+            try {
+                songsPlayer.skip();
+            } catch (IOException e) {
+                Log.d("Music", "TimeActivity.onSkip failed");
+                e.printStackTrace();
+            }
+            Log.d("Music", "Finished TimeActivity.onSkip");
+        }
+        else{
+            songsPlayer.stop();
+            timer.onFinish();
+        }
     }
 }
