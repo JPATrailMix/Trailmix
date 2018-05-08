@@ -67,7 +67,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
-        //getLocationPermission();
+        getLocationPermission();
     }
 
     @Override
@@ -81,7 +81,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             return;
         }
         mMap.setMyLocationEnabled(true);
-//        mMap.getUiSettings().setMyLocationButtonEnabled(false);
+        //mMap.getUiSettings().setMyLocationButtonEnabled(false);
 
        /* if (mLocationPermissionsGranted) {
             getDeviceLocation();
@@ -103,6 +103,63 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         int res = this.checkCallingOrSelfPermission(permission);
         return (res == PackageManager.PERMISSION_GRANTED);
     }
+    // Calculates distance and time between two places
+
+//    public void distanceMatrix(String origin, String destination) {
+//
+//        Log.d("mapActivity", "Entered distanceMatrix() method");
+//
+//        // Defines the API key to use
+//
+//        String API_KEY = "AIzaSyASVU_Ws92GaMXBNhtREbNYXR3WBsbqDP0";
+//
+//        //Provides context for the matrix
+//
+//        GeoApiContext context = new GeoApiContext().setApiKey(API_KEY);
+//
+//
+//
+//        // If internet permission is not granted, ask for it
+//
+//        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED) {
+//
+//            Toast.makeText(getBaseContext(), "This app needs internet permission to work", Toast.LENGTH_SHORT).show();
+//
+//            ActivityCompat.requestPermissions((this), new String[]{Manifest.permission.INTERNET}, 1);
+//
+//        }
+//
+//        try {
+//
+//            DistanceMatrixApiRequest req = DistanceMatrixApi.newRequest(context);
+//
+//            //Takes the approved request and turns it into an actual distance matrix using the users current lat and long,
+//
+//            // and the recipient's address
+//
+//            //Matrix takes user's origin as a lat and long value, while it takes the recipients location as a street address
+//
+//            Log.d("mapActivity", "Called request");
+//
+//            DistanceMatrix distanceMatrix = req.origins(origin).destinations(destination).await();
+//
+//            //Takes the duration given by distance matrix and writes it to the global variable finalEstimatedTime
+//
+//            Log.d("mapActivity", "Distance Matrix Created");
+//
+//            finalEstimatedTime = (distanceMatrix.rows[0].elements[0].duration.humanReadable);
+//
+//            Log.d("mapActivity", "distanceMatrix functions as desired. Final time: " + finalEstimatedTime);
+//
+//        } catch (Exception e) {
+//
+//            Log.d("mapActivity", "Catching things if they fail!");
+//
+//            e.printStackTrace();
+//
+//        }
+//
+//    }
 
 
     private void getDeviceLocation(){
