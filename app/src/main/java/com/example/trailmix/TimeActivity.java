@@ -32,7 +32,7 @@ public class TimeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time);
         Bundle bundle = getIntent().getExtras();
-
+//Time source code: https://developer.android.com/reference/android/os/CountDownTimer
         double time = bundle.getDouble("MinutesTime");
         SongRetriever sr = new SongRetriever(this);
         long startTime = System.currentTimeMillis();
@@ -82,7 +82,7 @@ public class TimeActivity extends AppCompatActivity {
         Intent intent2 = new Intent(this,FinishedActivity.class);
         startActivity(intent2);
     }
-
+    //cancel prompt
     public void onCancel(View view){
 
         Button cancel = (Button) findViewById(R.id.cancel);
@@ -94,11 +94,13 @@ public class TimeActivity extends AppCompatActivity {
         Button nonconfirm = (Button) findViewById(R.id.nonconfirm);
         nonconfirm.setVisibility(View.VISIBLE);
     }
+    //if the user says yes to the cancel prompt
     public void onYes(View view){
         songsPlayer.stop();
         Intent intent2 = new Intent(this,FinishedActivity.class);
         startActivity(intent2);
     }
+    //if the user says no to the cancel prompt
     public void onNo(View view){
         TextView sure = (TextView) findViewById(R.id.sure);
         sure.setVisibility(View.INVISIBLE);

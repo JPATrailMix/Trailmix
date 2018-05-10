@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     }
     //if need be, this is the get location option
     public void getLocation(View view){
-        Intent intentMaps= new Intent(this, MapsActivity.class);
+        Intent intentMaps= new Intent(this,MapsActivity.class);
         startActivity(intentMaps);
 
     }

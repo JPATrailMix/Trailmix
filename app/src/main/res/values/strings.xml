@@ -14,5 +14,9 @@
     <string name="confirm">Yes</string>
     <string name="nonconfirm">No</string>
     <string name="load">Loading...</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="city">Present Location</string>
+    <string name="no_text"> </string>
 
 </resources>
