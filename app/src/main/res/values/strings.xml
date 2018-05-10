@@ -5,6 +5,7 @@
     <string name="minute">minute(s)</string>
     <string name="button">Start!</string>
     <string name="maps">Choose Location</string>
+    <string name="manuel">Choose Manually</string>
     <string name="textView">Your playlist has finished.</string>
     <string name="back">Back to the home screen</string>
     <string name="time">Time</string>
@@ -14,9 +15,8 @@
     <string name="confirm">Yes</string>
     <string name="nonconfirm">No</string>
     <string name="load">Loading...</string>
-    <string name="latitude">Latitude</string>
-    <string name="longitude">Longitude</string>
-    <string name="city">Present Location</string>
-    <string name="no_text"> </string>
+    <string name="Question">Please Input Your Destination</string>
+
+
 
 </resources>

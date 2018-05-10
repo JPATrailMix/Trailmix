@@ -43,4 +43,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_app_icon"
         tools:ignore="VectorDrawableCompat" />
+
 </android.support.constraint.ConstraintLayout>

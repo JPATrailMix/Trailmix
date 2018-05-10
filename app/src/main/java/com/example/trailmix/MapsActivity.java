@@ -55,11 +55,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
     private static final float DEFAULT_ZOOM = 15f;
+    private static GoogleMap mMap;
     private LocationRequest nLocationRequest;
 
     //vars
     private Boolean mLocationPermissionsGranted = false;
-    private GoogleMap mMap;
     private FusedLocationProviderClient mFusedLocationProviderClient;
 
     @Override
@@ -69,7 +69,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         getLocationPermission();
     }
-
+    public static GoogleMap getGoogleMap(){
+        return mMap;
+    }
     @Override
     public void onMapReady(GoogleMap googleMap) {
         Toast.makeText(this, "Map is Ready", Toast.LENGTH_SHORT).show();
@@ -81,6 +83,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             return;
         }
         mMap.setMyLocationEnabled(true);
+        Location myLocation = mMap.getMyLocation();
+        double lat = myLocation.getLatitude();
+        double lon = myLocation.getLongitude();
+        Log.d("Maps",lat +", " +lon);
         //mMap.getUiSettings().setMyLocationButtonEnabled(false);
 
        /* if (mLocationPermissionsGranted) {
