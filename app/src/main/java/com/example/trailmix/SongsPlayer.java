@@ -35,7 +35,7 @@ public class SongsPlayer {
     }
 
     public void startPlayer() throws IOException {
-        Log.d("Music", "SongsPlayer's song list:" + songs);
+        //Log.d("Music", "SongsPlayer's song list:" + songs);
         stopped = false;
         if(songs.size() != 0) {
             songLength = songs.get(0).getTime();
@@ -53,9 +53,9 @@ public class SongsPlayer {
             player.prepare();
             player.start();
             songStartTime = System.currentTimeMillis();
-            Log.d("Music", "Name: " + songs.get(0).getName());
-            Log.d("Music", "Artist: " + songs.get(0).getArtist());
-            Log.d("Music", "SongsPlayer's song list:" + songs);
+            //Log.d("Music", "Name: " + songs.get(0).getName());
+            //Log.d("Music", "Artist: " + songs.get(0).getArtist());
+           // Log.d("Music", "SongsPlayer's song list:" + songs);
             player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 public void onCompletion(MediaPlayer mp) {
                     mp.stop();
@@ -105,11 +105,11 @@ public class SongsPlayer {
     }
 
     public void skip() throws IOException{
-        Log.d("Music", "SongsPlayer.skip starting");
+        //Log.d("Music", "SongsPlayer.skip starting");
         stop();
 
         startPlayer();
-        Log.d("Music", "SongsPlayer.skip starting");
+       // Log.d("Music", "SongsPlayer.skip starting");
     }
 
     public long getRemainingSongTime(){
