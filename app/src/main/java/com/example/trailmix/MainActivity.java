@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             toast.show();
         }
         else{
-            SongRetriever sr = new SongRetriever(this);
+           // SongRetriever sr = new SongRetriever(this);
             long startTime = System.currentTimeMillis();
 
         Intent intent = new Intent(this,TimeActivity.class);

@@ -167,7 +167,7 @@ public class PlaylistGenerator {
     }
 
     public static void replaceSong(Playlist p, ArrayList<Song> songs, ArrayList<Song> origSongs, long replacementLength, int index){
-        Log.d("Music", "PlaylistGenerator.replaceSong starting");
+       // Log.d("Music", "PlaylistGenerator.replaceSong starting");
         ArrayList<Song> playlistSongs = p.getSongs();
         int goodFitIndex = 0;
         if(songs.size() != 0) {
@@ -184,6 +184,7 @@ public class PlaylistGenerator {
             playlistSongs.add(goodFit);
         }
         else{
+            Log.d("Music", "Your Playlist is too long!");
             if(origSongs.size() != 0) {
                 Song goodFit = songs.get(0);
                 for (Song i : origSongs) {
@@ -194,7 +195,7 @@ public class PlaylistGenerator {
                 playlistSongs.add(goodFit);
             }
         }
-        Log.d("Music", "PlaylistGenerator.replaceSong finished");
+       // Log.d("Music", "PlaylistGenerator.replaceSong finished");
 
     }
 
