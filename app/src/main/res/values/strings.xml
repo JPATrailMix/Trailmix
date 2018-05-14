@@ -5,7 +5,7 @@
     <string name="minute">minute(s)</string>
     <string name="button">Start!</string>
     <string name="maps">Choose Location</string>
-    <string name="manuel">Choose Manually</string>
+    <string name="manuel">Enter Time</string>
     <string name="textView">Your playlist has finished.</string>
     <string name="back">Back to the home screen</string>
     <string name="time">Time</string>
