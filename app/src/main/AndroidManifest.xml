@@ -15,9 +15,10 @@
          location permissions for the 'MyLocation' functionality.
     -->
     <!-- app icon -->
+    <!--Icon made with Logo made using LogoMakr at LogoMakr.com, https://logomakr.com/9Badtn-->
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_logo_icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -28,7 +29,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

@@ -6,9 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.trailmix.MainActivity"
-    android:background="@drawable/ic_blue_shapes"
-    >
-    <!--http://svgur.com/s/2x3 -->
+    android:background="@drawable/ic_blue_shapes" >
+    <!--android:background="@color/DarkGreen"-->
+    <!-- http://svgur.com/s/2x3"/-->
     <!--This is the launch screen aesthetics -->
     <TextView
         android:id="@+id/timeView"
