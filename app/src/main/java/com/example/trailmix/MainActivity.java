@@ -300,6 +300,16 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
         }
     }
+    public void onTemplate(View view){
+        lat = ""+latitude;
+        lon = ""+longitude;
+        Intent template = new Intent(this, LocationActivity.class);
+        template.putExtra("latitude", lat);
+        template.putExtra("longitude", lon);
+
+        startActivity(template);
+        Log.d("TAG", "location activity intent started");
+    }
     public boolean checkLocationPermission(){
         String permission = "android.permission.ACCESS_FINE_LOCATION";
         int res = this.checkCallingOrSelfPermission(permission);
@@ -323,6 +333,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         number.setVisibility(View.INVISIBLE);
         EditText address = (EditText) findViewById(R.id.address);
         address.setVisibility(View.VISIBLE);
+        //Button button5 = (Button) findViewById(R.id.button5);
+        //button5.setVisibility(View.VISIBLE);
         onManuel = false;
 
 
@@ -342,6 +354,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         number.setVisibility(View.VISIBLE);
         EditText address = (EditText) findViewById(R.id.address);
         address.setVisibility(View.INVISIBLE);
+        //Button button5 = (Button) findViewById(R.id.button5);
+        //button5.setVisibility(View.INVISIBLE);
         onManuel = true;
 
     }
@@ -357,5 +371,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     }
     public String getAddress(){
         return address;
+    }
+    public void setAddress(String address){
+        this.address = address;
     }
 }
