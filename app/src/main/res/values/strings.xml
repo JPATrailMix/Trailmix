@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Trailmix</string>
+    <string name="app_name">TrailMix</string>
     <string name="title_activity_maps">Map</string>
     <string name="text">How long is your trip?</string>
     <string name="minute">minute(s)</string>
@@ -16,7 +16,11 @@
     <string name="nonconfirm">No</string>
     <string name="load">Loading...</string>
     <string name="Question">Please Input Your Destination</string>
-
+    <string name="street">Street Name</string>
+    <string name="num">Building Number</string>
+    <string name="state">State (Abbreviated)</string>
+    <string name="go">Go!</string>
+    <string name="template">Find your address using an address template</string>
 
 
 </resources>

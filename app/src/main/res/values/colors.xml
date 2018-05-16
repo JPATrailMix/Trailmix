@@ -5,6 +5,7 @@
     <color name="colorAccent">#139819</color>
     <color name="red">#ffff0000</color>
     <color name="green">#42f450</color>
+    <color name = "DarkGreen">#417238</color>
     <color name="colorBackground">#fafafa</color>
     <color name="background_material_light">#fafafa</color>
 
