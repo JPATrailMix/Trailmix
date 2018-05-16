@@ -83,7 +83,7 @@ public class Song implements Comparable {
     }
 
     public Song copy() {
-        return new Song(time);
+        return new Song(name,path,time);
     }
 
     public String getPath() {

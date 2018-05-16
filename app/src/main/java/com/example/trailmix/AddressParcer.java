@@ -44,7 +44,7 @@ public class AddressParcer extends AsyncTask<Void,Void,Void> {
             System.out.println(json);
             System.out.println(json.lastIndexOf("value"));
             System.out.println(json.substring(json.lastIndexOf("value")));
-            String durationString = json.substring(json.lastIndexOf("value") + 9,json.lastIndexOf("value") + 9 + 7);
+            String durationString = json.substring(json.lastIndexOf("value") + 9,json.indexOf(" ", json.lastIndexOf("value") + 9));
             System.out.println(durationString);
             durationString = durationString.trim();
             int duration = Integer.parseInt(durationString);
@@ -52,10 +52,12 @@ public class AddressParcer extends AsyncTask<Void,Void,Void> {
             return duration/60;
 
         } catch (IOException e) {
+            Log.d("Error", "-"+1);
+            return -1;
 // TODO Auto-generated catch block
-            e.printStackTrace();
+            //e.printStackTrace();
         }
-        return -1;
+        //return -1;
     }
 
     public static String plusify(String s) {

@@ -292,11 +292,25 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             }
             Log.d("Music", "ap.execute");
             Log.d("Time", ""+tripDuration);
-            Intent intent = new Intent(this,TimeActivity.class);
-            intent.putExtra("MinutesTime", tripDuration);
+            if(tripDuration == -1){
+                Toast toast = Toast.makeText(context, "Your destination does not exist, try spelling it a different way?", duration);
+                toast.show();
+            }
+            else if(tripDuration < 3){
+                Toast toast = Toast.makeText(context,"Please enter a destination that is farther away", duration);
+                toast.show();
+            }
+            else if(tripDuration < 3 || tripDuration >= 600){
+                Toast toast = Toast.makeText(context, "Your destination is too far away!", duration);
+                toast.show();
+            }
+            else {
+                Intent intent = new Intent(this, TimeActivity.class);
+                intent.putExtra("MinutesTime", tripDuration);
 
-            startActivity(intent);
-            Log.d("Music", "time activity intent started");
+                startActivity(intent);
+                Log.d("Music", "time activity intent started");
+            }
 
         }
     }

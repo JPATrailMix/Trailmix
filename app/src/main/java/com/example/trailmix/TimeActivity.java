@@ -115,7 +115,7 @@ public class TimeActivity extends AppCompatActivity {
     public void onSkip(View view){
         if(timerTimeRemaining > 30) {
             Log.d("Music", "Starting TimeActivity.onSkip");
-            PlaylistGenerator.replaceSong(playlist, songs, origSongs, songsPlayer.getRemainingSongTime(), 0);
+            PlaylistGenerator.replaceSong(playlist, songs, origSongs, songsPlayer.getRemainingSongTime(), 0, System.currentTimeMillis());
            // Log.d("Music", "Finished switching song in playlist in TimeActivity.onSkip");
            // Log.d("Music", "New playlist after PlaylistGenerator.replaceSong: " + playlist);
             try {
