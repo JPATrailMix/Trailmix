@@ -240,6 +240,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     }
     //when there is an input of time
     public void getDuration(View v){
+        tripDuration=null;
         Context context = getApplicationContext();
         CharSequence text = "Please enter a time at least 3 minutes and less than 600 minutes";
         int duration = Toast.LENGTH_LONG;
@@ -275,41 +276,47 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             Log.d("Music", "getDuration starting with maps");
             EditText addressText = findViewById(R.id.address);
             address = addressText.getText().toString();
-            //starts timer
-            Log.d("Music", address);
-
-            //SongRetriever sr = new SongRetriever(this);
-            long startTime = System.currentTimeMillis();
-            Log.d("Latitude",""+latitude);
-            Log.d("Longitude", ""+longitude);
-            lat = ""+latitude;
-            lon = ""+longitude;
-            //Double tripDuration = AddressParcer.getTripDuration(latitude,longitude,address);
-            AddressParcer ap = new AddressParcer(this);
-            ap.execute();
-            while(tripDuration==null){
-                //Log.d("Test","Nah");
-            }
-            Log.d("Music", "ap.execute");
-            Log.d("Time", ""+tripDuration);
-            if(tripDuration == -1){
-                Toast toast = Toast.makeText(context, "Your destination does not exist, try spelling it a different way?", duration);
-                toast.show();
-            }
-            else if(tripDuration < 3){
-                Toast toast = Toast.makeText(context,"Please enter a destination that is farther away", duration);
-                toast.show();
-            }
-            else if(tripDuration < 3 || tripDuration >= 600){
-                Toast toast = Toast.makeText(context, "Your destination is too far away!", duration);
+            if(address.isEmpty()) {
+                Toast toast = Toast.makeText(context, "Please enter another destination.", duration);
                 toast.show();
             }
             else {
-                Intent intent = new Intent(this, TimeActivity.class);
-                intent.putExtra("MinutesTime", tripDuration);
+                //starts timer
+                Log.d("Music", address);
 
-                startActivity(intent);
-                Log.d("Music", "time activity intent started");
+                //SongRetriever sr = new SongRetriever(this);
+                long startTime = System.currentTimeMillis();
+                Log.d("Latitude", "" + latitude);
+                Log.d("Longitude", "" + longitude);
+                lat = "" + latitude;
+                lon = "" + longitude;
+                //Double tripDuration = AddressParcer.getTripDuration(latitude,longitude,address);
+                AddressParcer ap = new AddressParcer(this);
+                ap.execute();
+
+                while (tripDuration == null) {
+                    //Log.d("Test","Nah");
+                }
+                Log.d("Music", "ap.execute");
+                Log.d("Time", "" + tripDuration);
+            /*if(tripDuration == -1){
+                Toast toast = Toast.makeText(context, "Your destination does not exist, try spelling it a different way?", duration);
+                toast.show();
+            }
+            else */
+                if (tripDuration < 3) {
+                    Toast toast = Toast.makeText(context, "Please enter another destination.", duration);
+                    toast.show();
+                } else if (tripDuration < 3 || tripDuration >= 600) {
+                    Toast toast = Toast.makeText(context, "Please enter another destination.", duration);
+                    toast.show();
+                } else {
+                    Intent intent = new Intent(this, TimeActivity.class);
+                    intent.putExtra("MinutesTime", tripDuration);
+
+                    startActivity(intent);
+                    Log.d("Music", "time activity intent started");
+                }
             }
 
         }
