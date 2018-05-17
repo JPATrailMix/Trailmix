@@ -39,22 +39,25 @@ public class AddressParcer extends AsyncTask<Void,Void,Void> {
             json = readURL("https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + lat + "," + lon + "&destinations="+ plusify(destination) +"&key=AIzaSyASVU_Ws92GaMXBNhtREbNYXR3WBsbqDP0");
             Log.d("Address Parcer", "I got the URL!");
             System.out.println(json);
-            System.out.println(json.lastIndexOf("value"));
-            System.out.println(json.substring(json.lastIndexOf("value")));
-            String durationString = json.substring(json.lastIndexOf("value") + 9,json.indexOf(" ", json.lastIndexOf("value") + 9));
-            System.out.println(durationString);
-            durationString = durationString.trim();
-            int duration = Integer.parseInt(durationString);
-            System.out.println(duration);
-            return duration/60;
+            System.out.println(json.lastIndexOf("value") + "hi");
+            if(json.indexOf("value")>-1) {
+                System.out.println(json.substring(json.lastIndexOf("value")) + "yo");
+                String durationString = json.substring(json.lastIndexOf("value") + 9, json.indexOf(" ", json.lastIndexOf("value") + 9));
+                System.out.println(durationString);
+                durationString = durationString.trim();
+                int duration = Integer.parseInt(durationString);
+                System.out.println(duration);
+                return duration / 60;
+            }
+            else{
+                return -1;
+            }
 
         } catch (IOException e) {
-            Log.d("Error", "-"+1);
+            Log.d("Error", "-" + 1);
             return -1;
-// TODO Auto-generated catch block
-            //e.printStackTrace();
         }
-        //return -1;
+// TODO Auto-generated catch block
     }
 
     public static String plusify(String s) {

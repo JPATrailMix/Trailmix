@@ -27,11 +27,13 @@ public class TimeActivity extends AppCompatActivity {
     private ArrayList<Song> origSongs;
     private long timerTimeRemaining;
     private CountDownTimer timer;
+    private long lastSkipTime;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time);
         Bundle bundle = getIntent().getExtras();
+        lastSkipTime = 0;
 //Time source code: https://developer.android.com/reference/android/os/CountDownTimer
         double time = bundle.getDouble("MinutesTime");
         SongRetriever sr = new SongRetriever(this);
@@ -112,23 +114,30 @@ public class TimeActivity extends AppCompatActivity {
         cancel.setVisibility(View.VISIBLE);
     }
 
-    public void onSkip(View view){
-        if(timerTimeRemaining > 30) {
-            Log.d("Music", "Starting TimeActivity.onSkip");
-            PlaylistGenerator.replaceSong(playlist, songs, origSongs, songsPlayer.getRemainingSongTime(), 0, System.currentTimeMillis());
-           // Log.d("Music", "Finished switching song in playlist in TimeActivity.onSkip");
-           // Log.d("Music", "New playlist after PlaylistGenerator.replaceSong: " + playlist);
-            try {
-                songsPlayer.skip();
-            } catch (IOException e) {
-              //  Log.d("Music", "TimeActivity.onSkip failed");
-                e.printStackTrace();
+    public void onSkip(View view) {
+        if (System.currentTimeMillis() - lastSkipTime > 1000) {
+            lastSkipTime = System.currentTimeMillis();
+            if (timerTimeRemaining > 30) {
+                Log.d("Music", "Starting TimeActivity.onSkip");
+                PlaylistGenerator.replaceSong(playlist, songs, origSongs, songsPlayer.getRemainingSongTime(), 0, System.currentTimeMillis());
+                // Log.d("Music", "Finished switching song in playlist in TimeActivity.onSkip");
+                // Log.d("Music", "New playlist after PlaylistGenerator.replaceSong: " + playlist);
+                try {
+                    songsPlayer.skip();
+                } catch (IOException e) {
+                    //  Log.d("Music", "TimeActivity.onSkip failed");
+                    e.printStackTrace();
+                }
+                Log.d("Music", "Finished TimeActivity.onSkip");
+            } else {
+                songsPlayer.stop();
+                timer.onFinish();
             }
-            Log.d("Music", "Finished TimeActivity.onSkip");
         }
-        else{
-            songsPlayer.stop();
-            timer.onFinish();
+        else {
+            Toast coolIt = Toast.makeText(getApplicationContext(), "chill dude. cool it.", Toast.LENGTH_LONG);
+            coolIt.show();
         }
     }
+
 }

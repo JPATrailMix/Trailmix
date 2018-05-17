@@ -17,9 +17,11 @@ public class SongsPlayer {
     private boolean stopped = false;
     long songStartTime;
     long songLength;
+    long lastSkipTime;
 
 
     public SongsPlayer (ArrayList<Song> songs, Activity act)  {
+        lastSkipTime = 0;
         this.songs = songs;
         activity = act;
         try {
@@ -106,9 +108,12 @@ public class SongsPlayer {
 
     public void skip() throws IOException{
         //Log.d("Music", "SongsPlayer.skip starting");
-        stop();
+        if(System.currentTimeMillis()-lastSkipTime>1000) {
+            lastSkipTime = System.currentTimeMillis();
+            stop();
+            startPlayer();
+        }
 
-        startPlayer();
        // Log.d("Music", "SongsPlayer.skip starting");
     }
 
