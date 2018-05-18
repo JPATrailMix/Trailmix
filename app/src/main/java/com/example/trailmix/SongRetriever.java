@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -20,10 +19,12 @@ public class SongRetriever {
     private ArrayList<String> songLengths1;
     private ArrayList<String> songPaths;
     private ArrayList<Integer> songLengths;
+    private ArrayList<String> artistNames;
 
     public SongRetriever(Activity act){
         songPaths = new ArrayList<String>();
         songNames = new ArrayList<String>();
+        artistNames = new ArrayList<String>();
         songLengths1= new ArrayList<String>();
         songLengths = new ArrayList<Integer>();
         getMusic(act);
@@ -74,9 +75,11 @@ public class SongRetriever {
                 String thisTitle = songCursor.getString(songTitle);
                 String thisDuration = songCursor.getString(songDuration);
                 String currentLocation = songCursor.getString(songLocation);
+                String thisArtist = songCursor.getString(songArtist);
                 songLengths1.add(thisDuration);
                 songPaths.add(currentLocation);
                 songNames.add(thisTitle);
+                artistNames.add(thisArtist);
             } while(songCursor.moveToNext());
         }
         Log.d("Music", "Music info retrieved:");

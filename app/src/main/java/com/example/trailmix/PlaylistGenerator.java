@@ -227,7 +227,7 @@ public class PlaylistGenerator {
         int goodFitIndex = 0;
         if(songs.size() != 0) {
             Song goodFit;
-            if(!p.getSongs().get(0).getPath().equals(p.getSongs().get(index).getPath()))
+            if(!p.getSongs().get(0).getPath().equals(p.getSongs().get(index).getPath())||p.getSongs().size()<2)
                 goodFit = p.getSongs().get(0);
             else
                 goodFit = p.getSongs().get(1);

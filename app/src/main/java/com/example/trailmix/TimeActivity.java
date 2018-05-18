@@ -55,8 +55,12 @@ public class TimeActivity extends AppCompatActivity {
             int millis = (int) (time * 60 * 1000);
             timer = new CountDownTimer(millis, 1000) {
                 TextView tv = (TextView) findViewById(R.id.time);
+                TextView sN = (TextView) findViewById(R.id.songName);
+                TextView aN = (TextView) findViewById(R.id.artistName);
 
                 public void onTick(long millisUntilFinished) {
+                    sN.setText(playlist.getSongs().get(0).getName());
+                    //aN.setText()
 
                     long seconds = millisUntilFinished / 1000;
                     if (seconds % 60 < 10) {
@@ -76,7 +80,7 @@ public class TimeActivity extends AppCompatActivity {
             }.start();
         }
         catch(IOException e){
-            Toast passiveAgressive = Toast.makeText(getApplicationContext(),"No songs found in native storage. Get a life.",Toast.LENGTH_LONG);
+            Toast passiveAgressive = Toast.makeText(getApplicationContext(),"No songs found in native storage. Go buy some songs!",Toast.LENGTH_LONG);
             passiveAgressive.show();
         }
     }
