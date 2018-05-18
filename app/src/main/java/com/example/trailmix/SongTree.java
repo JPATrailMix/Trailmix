@@ -17,6 +17,14 @@ public class SongTree {
     private Node rootNode;
     private int targetTime;
 
+    /**
+     * Constructs song tree. Set node to true to run the actual tree algorithm on real nodes.
+     * Set node to false to run the algorithm with the emulated tree algorithm.
+     *
+     * @param songs
+     * @param targetTime
+     * @param node
+     */
     public SongTree(Song[] songs, int targetTime, boolean node) {
         if (node) {
             long startTime = System.currentTimeMillis();
@@ -26,13 +34,17 @@ public class SongTree {
             this.targetTime = targetTime;
             //System.out.println(arrayToString(songs));
             rootNode = new Node(this, new Playlist(new ArrayList<Song>()));
+
+            //Feed songs into the root node.
             for (Song s : this.songs) {
                 rootNode.addSong(s);
                 //System.out.println("Closest Playlist has length: " + closestPlaylist.getTime());
-				if(playlists.size() > 0 && System.currentTimeMillis()-startTime > 2000) {
-					Log.d("SongTree","Stopping song tree because playlists.size() > 0 and it has been running for more than 2 seconds");
-					break;
-				}
+
+                //stop running the algorithm if it has been running for longer than two seconds and a playlist has been found already.
+                if (playlists.size() > 0 && System.currentTimeMillis() - startTime > 2000) {
+                    Log.d("SongTree", "Stopping song tree because playlists.size() > 0 and it has been running for more than 2 seconds");
+                    break;
+                }
                 // System.out.println(getPlaylists().size() + " possible playlist(s): " +
                 // getPlaylists());
             }
@@ -62,8 +74,7 @@ public class SongTree {
 						/*tree.remove(i);
 						i--;
 						r++;*/
-                    }
-                    else {
+                    } else {
                         tree.remove(i);
                         i--;
                         r++;
@@ -80,12 +91,23 @@ public class SongTree {
 
     }
 
+    /**
+     * Allows nodes to submit playlists that are not the right length of time, as well as perfect ones.
+     * This method keeps track of the closests inaccurate playlist, just in case a perfect one isn't found.
+     *
+     * @param p
+     */
     public void submitPlaylistWithError(Playlist p) {
-        if(closestPlaylist == null)
+        if (closestPlaylist == null)
             closestPlaylist = p;
-        closestPlaylist = Math.abs(targetTime - p.getTime()) < Math.abs(targetTime - closestPlaylist.getTime())? p : closestPlaylist;
+        closestPlaylist = Math.abs(targetTime - p.getTime()) < Math.abs(targetTime - closestPlaylist.getTime()) ? p : closestPlaylist;
     }
 
+    /**
+     * Method for submitting perfect playlists.
+     *
+     * @param playlist
+     */
     public void addPlaylist(Playlist playlist) {
         playlists.add(playlist);
     }
@@ -98,6 +120,12 @@ public class SongTree {
         return targetTime;
     }
 
+    /**
+     * converts an array of integers to an array of song objects with lengths of those integers.
+     *
+     * @param times
+     * @return
+     */
     public static Song[] timesToSongs(int[] times) {
         Song[] songs = new Song[times.length];
         for (int i = 0; i < songs.length; i++)
@@ -105,6 +133,12 @@ public class SongTree {
         return songs;
     }
 
+    /**
+     * Takes an array of songs and returns an array of their durations.
+     *
+     * @param songs
+     * @return
+     */
     public static int[] songsToTimes(Song[] songs) {
         int[] times = new int[songs.length];
         for (int i = 0; i < times.length; i++)
@@ -112,6 +146,12 @@ public class SongTree {
         return times;
     }
 
+    /**
+     * converts an array of integers to an array of song objects with lengths of those integers.
+     *
+     * @param songs
+     * @return
+     */
     public static int[] songsToTimes(ArrayList<Song> songs) {
         int[] times = new int[songs.size()];
         for (int i = 0; i < times.length; i++)
@@ -121,21 +161,5 @@ public class SongTree {
 
     public Playlist getClosestPlaylist() {
         return closestPlaylist;
-    }
-
-    public static String arrayToString(Object[] os) {
-        String s = "[";
-        for (int i = 0; i < os.length - 1; i++)
-            s += os[i].toString() + ",";
-        s += os[os.length - 1] + "]";
-        return s;
-    }
-
-    public static String arrayToString(int[] os) {
-        String s = "[";
-        for (int i = 0; i < os.length - 1; i++)
-            s += os[i] + ",";
-        s += os[os.length - 1] + "]";
-        return s;
     }
 }
