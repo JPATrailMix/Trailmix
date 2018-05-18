@@ -67,7 +67,11 @@ public class Node {
     }
 
     /**
-     * checks the playlist total time. If it is longer tha
+     * Checks the playlist total time. Submit the playlist as a possible imperfect solution to the song tree.
+     * If the playlist time is perfect, it adds it to the list of perfect playlists
+     * in the song tree. If the difference of the target time and the
+     * playlist time is less than the length of the song received at initialization,
+     * inactivate the node.
      */
     private void checkTime() {
         if(playlist.getTime() == songTree.getTargetTime()) {
