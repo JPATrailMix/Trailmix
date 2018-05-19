@@ -52,7 +52,8 @@ public class Node {
 
     /**
      * If the node already has children, it will just forward the song to the children.
-     * If the node doesn't have children, it will create two children and give the song to one of them to tack onto its playlist.
+     * If the node doesn't have children, it will create two children and give the song
+     * to one of them to tack onto its playlist.
      * @param newSong
      */
     public void addSong(Song newSong) {

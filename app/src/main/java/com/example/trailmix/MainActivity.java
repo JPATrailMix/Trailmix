@@ -1,8 +1,4 @@
 package com.example.trailmix;
-/*
-Author: Patrick Tan
-This is the launch screen.
- */
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -53,6 +49,12 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+
+/**
+ * @author Patric Tan
+ * @date 05/18/2018
+ * This class controls the launch screen, prompting the user to enter a time of destination.
+ */
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
     private boolean onManuel = true;
@@ -71,6 +73,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     private Double tripDuration;
     private String address;
 
+    /**
+     * Starts the app
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,17 +89,26 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                     .build();
         }
     }
-    //code for getting lat. and long. from https://inducesmile.com/android/android-location-service-api-using-google-play-services/
+
+    /**
+     * QQQ Code for getting lat. and long. from https://inducesmile.com/android/android-location-service-api-using-google-play-services/
+     */
     @Override
     protected void onStart() {
         mGoogleApiClient.connect();
         super.onStart();
     }
+    /**
+     * QQQ Code for getting lat. and long. from https://inducesmile.com/android/android-location-service-api-using-google-play-services/
+     */
     @Override
     protected void onStop() {
         mGoogleApiClient.disconnect();
         super.onStop();
     }
+    /**
+     * QQQ Code for getting lat. and long. from https://inducesmile.com/android/android-location-service-api-using-google-play-services/
+     */
     @Override
     public void onConnected(Bundle bundle) {
         mLocationRequest = createLocationRequest();
@@ -139,11 +154,15 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         });
     }
 
+    /**
+     *  QQQ Code for getting lat. and long. from https://inducesmile.com/android/android-location-service-api-using-google-play-services/
+     */
     @Override
-    public void onConnectionSuspended(int i) {
+    public void onConnectionSuspended(int i) {}
 
-    }
-
+    /**
+     * QQQ Code for getting lat. and long. from https://inducesmile.com/android/android-location-service-api-using-google-play-services/
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
@@ -169,6 +188,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 break;
         }
     }
+
+    /**
+     * QQQ Code for getting lat. and long. from https://inducesmile.com/android/android-location-service-api-using-google-play-services/
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
@@ -187,6 +210,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             // permissions this app might request
         }
     }
+
+    /**
+     * Code for getting lat. and long. from https://inducesmile.com/android/android-location-service-api-using-google-play-services/
+     */
     @Override
     public void onLocationChanged(Location location) {
         if (mLastLocation != null) {
@@ -195,6 +222,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             //getAddressFromLocation(mLastLocation, getApplicationContext(), new GeoCoderHandler());
         }
     }
+
+    /**
+     * QQQQ This thing isn't used anymore. Can we get rid of it?
+     */
     public static void getAddressFromLocation(final Location location, final Context context, final Handler handler) {
         Thread thread = new Thread() {
             @Override
@@ -227,10 +258,19 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         thread.start();
     }
 
+    /**
+     * QQQQ
+     * @param connectionResult
+     */
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
+
+    /**
+     *
+     * @return QQQ
+     */
     protected LocationRequest createLocationRequest() {
         @SuppressLint("RestrictedApi") LocationRequest mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(10000);
@@ -238,7 +278,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         return mLocationRequest;
     }
-    //when there is an input of time
+
+    /**
+     * Runs when the user inputs a time. If the user specifies a time, it passes the time to the TimeActivity.
+     * If the user inputs a destination, send the input string over to the AddressParser to get the time and then pass that time to the TimeActivity.
+     * @param v the view. Not used for anything here.
+     */
     public void getDuration(View v){
         tripDuration=null;
         Context context = getApplicationContext();
@@ -261,7 +306,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 toast.show();
             }
             else{
-                //SongRetriever sr = new SongRetriever(this);
                 long startTime = System.currentTimeMillis();
 
                 Intent intent = new Intent(this,TimeActivity.class);
@@ -321,6 +365,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
         }
     }
+
+    /**
+     * QQQ
+     * @param view
+     */
     public void onTemplate(View view){
         lat = ""+latitude;
         lon = ""+longitude;
@@ -331,12 +380,21 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         startActivity(template);
         Log.d("TAG", "location activity intent started");
     }
+
+    /**
+     * QQQ
+     * @return
+     */
     public boolean checkLocationPermission(){
         String permission = "android.permission.ACCESS_FINE_LOCATION";
         int res = this.checkCallingOrSelfPermission(permission);
         return (res == PackageManager.PERMISSION_GRANTED);
     }
-    //if need be, this is the get location option
+
+    /**
+     * if need be, this is the get location option
+     * @param view
+     */
     public void getLocation(View view){
 //        Intent intentMaps= new Intent(this,MapsActivity.class);
 //        startActivity(intentMaps);
@@ -357,9 +415,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         //Button button5 = (Button) findViewById(R.id.button5);
         //button5.setVisibility(View.VISIBLE);
         onManuel = false;
-
-
     }
+
+    /**
+     * QQQ
+     * @param view
+     */
     public void getManuel(View view){
         Button manuel = (Button) findViewById(R.id.manuel);
         manuel.setVisibility(View.INVISIBLE);
