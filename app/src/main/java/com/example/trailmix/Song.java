@@ -1,7 +1,9 @@
 package com.example.trailmix;
 
 /**
- * Created by andrewgoering on 3/31/18.
+ * @author Andy Goering
+ * @date 05/18/2018
+ * This class models a song. Stores song path and metadata.
  */
 
 public class Song implements Comparable {
@@ -74,6 +76,11 @@ public class Song implements Comparable {
         this.time = time;
     }
 
+    /**
+     * Compares the length of this song with that of another
+     * @param o (object to perform the comparison with)
+     * @return returns difference in time between this Song and the argument
+     */
     @Override
     public int compareTo(Object o) {
         if(o instanceof Song)

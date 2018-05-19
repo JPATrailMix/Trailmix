@@ -1,9 +1,9 @@
 package com.example.trailmix;
 /*
-Author: Patrick Tan
-This Activity should be used in future extensions.
-If need of template for specific output.
- */
+* @author Patrick Tan
+* This Activity should be used in future extensions.
+* If need of template for specific output.
+*/
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

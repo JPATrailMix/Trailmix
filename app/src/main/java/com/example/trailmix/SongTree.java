@@ -1,7 +1,9 @@
 package com.example.trailmix;
 
 /**
- * Created by andrewgoering on 3/31/18.
+ * @author Andy Goering
+ * @date 05/18/2018
+ * Class for assembling a tree of Nodes and keeping track of possible Playlists returned by the nodes.
  */
 
 import android.util.Log;

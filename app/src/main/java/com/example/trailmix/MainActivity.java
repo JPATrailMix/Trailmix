@@ -442,9 +442,14 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     }
 
+    /**
+     * Allows AddressParcer to return the trip duration even though it is in a separate thread.
+     * @param tripDuration
+     */
     public void setTripDuration(Double tripDuration) {
         this.tripDuration = tripDuration;
     }
+
     public String getLat(){
         return lat;
     }

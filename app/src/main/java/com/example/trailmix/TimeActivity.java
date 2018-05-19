@@ -1,25 +1,22 @@
 package com.example.trailmix;
-/*
-Author: Patrick Tan
-This program plays music and counts how much time there is remaining.
- */
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
+/**
+ * This program plays music and counts how much time there is remaining.
+ * @author Patrick Tan with additions by Andy Goering and Josh DeOliveira
+ * @date 05/18/2018
+ */
 public class TimeActivity extends AppCompatActivity {
     private SongsPlayer songsPlayer;
     private Playlist playlist;
@@ -28,13 +25,13 @@ public class TimeActivity extends AppCompatActivity {
     private long timerTimeRemaining;
     private CountDownTimer timer;
     private long lastSkipTime;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time);
         Bundle bundle = getIntent().getExtras();
         lastSkipTime = 0;
-//Time source code: https://developer.android.com/reference/android/os/CountDownTimer
         double time = bundle.getDouble("MinutesTime");
         SongRetriever sr = new SongRetriever(this);
         long startTime = System.currentTimeMillis();
@@ -50,18 +47,19 @@ public class TimeActivity extends AppCompatActivity {
             Log.d("Music", "Entire PGA and song retrieval took " + (System.currentTimeMillis() - startTime) + "ms to run");
 
             songsPlayer = new SongsPlayer(playlist.getSongs(), this);
-
             Log.d("Countdown", "Countdown about to begin");
             int millis = (int) (time * 60 * 1000);
+
+            //Timer counts down the time left on the playlist and display the current song playing
+            // Timer code from https://developer.android.com/reference/android/os/CountDownTimer
             timer = new CountDownTimer(millis, 1000) {
                 TextView tv = (TextView) findViewById(R.id.time);
                 TextView sN = (TextView) findViewById(R.id.songName);
-                TextView aN = (TextView) findViewById(R.id.artistName);
 
                 public void onTick(long millisUntilFinished) {
-                    sN.setText(playlist.getSongs().get(0).getName());
-                    //aN.setText()
+                    sN.setText(playlist.getSongs().get(0).getName()); //display song playing
 
+                    //display time correctly in minutes in seconds
                     long seconds = millisUntilFinished / 1000;
                     if (seconds % 60 < 10) {
                         tv.setText("" + seconds / 60 + ":0" + seconds % 60);
@@ -74,21 +72,30 @@ public class TimeActivity extends AppCompatActivity {
 
                 public void onFinish() {
                     tv.setText("done!");
+
+                    // stop the SongsPlayer even if it is still playing. This may occur in
+                    // certain cases where the user provides an inadequate number of songs.
                     songsPlayer.stop();
                     startFinishedActivity();
                 }
             }.start();
         }
-        catch(IOException e){
-            Toast passiveAgressive = Toast.makeText(getApplicationContext(),"No songs found in native storage. Go buy some songs!",Toast.LENGTH_LONG);
-            passiveAgressive.show();
+        catch(IOException e){ // Tell user to go get some songs if they don't have any.
+            Toast getSomeSongs = Toast.makeText(getApplicationContext(),"No songs found in native storage. Go buy some songs!",Toast.LENGTH_LONG);
+            getSomeSongs.show();
         }
     }
+
+
     private void startFinishedActivity(){
         Intent intent2 = new Intent(this,FinishedActivity.class);
         startActivity(intent2);
     }
-    //cancel prompt
+
+    /**
+     * cancel prompt
+     * @param view
+     */
     public void onCancel(View view){
 
         Button cancel = (Button) findViewById(R.id.cancel);
@@ -100,13 +107,21 @@ public class TimeActivity extends AppCompatActivity {
         Button nonconfirm = (Button) findViewById(R.id.nonconfirm);
         nonconfirm.setVisibility(View.VISIBLE);
     }
-    //if the user says yes to the cancel prompt
-    public void onYes(View view){
+
+    /**
+     * if the user says yes to the cancel prompt
+     * @param view
+     */
+    public void onYes(View view) {
         songsPlayer.stop();
-        Intent intent2 = new Intent(this,FinishedActivity.class);
+        Intent intent2 = new Intent(this, FinishedActivity.class);
         startActivity(intent2);
     }
-    //if the user says no to the cancel prompt
+
+    /**
+     * if the user says no to the cancel prompt, hide the cancel option buttons
+     * @param view
+     */
     public void onNo(View view){
         TextView sure = (TextView) findViewById(R.id.sure);
         sure.setVisibility(View.INVISIBLE);
@@ -118,6 +133,11 @@ public class TimeActivity extends AppCompatActivity {
         cancel.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * If the user presses the skip button, start the skipping process.
+     * Doesn't allow the user to skip more than once per second.
+     * @param view
+     */
     public void onSkip(View view) {
         if (System.currentTimeMillis() - lastSkipTime > 1000) {
             lastSkipTime = System.currentTimeMillis();
@@ -139,7 +159,7 @@ public class TimeActivity extends AppCompatActivity {
             }
         }
         else {
-            Toast coolIt = Toast.makeText(getApplicationContext(), "chill dude. cool it.", Toast.LENGTH_LONG);
+            Toast coolIt = Toast.makeText(getApplicationContext(), "chill dude. cool it. one skip per second.", Toast.LENGTH_LONG);
             coolIt.show();
         }
     }

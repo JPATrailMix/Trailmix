@@ -10,6 +10,9 @@ import android.util.Log;
 import java.util.ArrayList;
 
 /**
+ * @author Josh DeOliveira with additions by Andrew Goering
+ * @date 05/18/2018
+ *
  * This class retrieves song paths and other metadata to be used later by TimeActivity and SongsPlayer.
  * Much of the code for song retrieval came from this tutorial: https://www.youtube.com/watch?time_continue=1&v=kf2fxYLOiSo
  */
@@ -76,25 +79,14 @@ public class SongRetriever {
         }
     }
 
-    /**
-     * @return songNames
-     */
     public ArrayList<String> getSongNames() {
         return songNames;
     }
 
-    /**
-     *
-     * @return songLengths
-     */
     public ArrayList<Integer> getSongLengths() {
         return songLengths;
     }
 
-    /**
-     *
-     * @return songPaths
-     */
     public ArrayList<String> getSongPaths() {
         return songPaths;
     }

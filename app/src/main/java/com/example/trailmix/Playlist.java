@@ -5,13 +5,14 @@ import java.util.Collection;
 import java.util.Random;
 
 /**
- * Created by andrewgoering on 3/31/18.
+ * @author Andy Goering
+ * @date 05/18/2018
+ * Class for modeling a playlist of Song objects.
  */
 
 public class Playlist implements Comparable {
     private ArrayList<Song> songs;
     private int time;
-    private int compareNum;
 
     public Playlist(ArrayList<Song> songs) {
         this.songs = songs;
@@ -60,8 +61,11 @@ public class Playlist implements Comparable {
         return new Playlist((ArrayList<Song>) original.getSongs().clone());
     }
 
-    /*
+    /**
      * Same algorithm as String class compareTo method.
+     * @param o (object to compare this playlist to)
+     * @return "distance" between the two playlists. Order determined
+     * the same way the order of words in a dictionary is determined.
      */
     @Override
     public int compareTo(Object o) {
@@ -87,6 +91,9 @@ public class Playlist implements Comparable {
 
     }
 
+    /**
+     * Shuffles the playlist randomly
+     */
     public void shuffle(){
         Random rand = new Random();
         for(int i = songs.size()-1; i > 0; i--){
@@ -98,6 +105,12 @@ public class Playlist implements Comparable {
 
     }
 
+    /**
+     * Concatenates two Playlists. Does not check for duplicate Songs.
+     * @param p1 (first playlist to concat)
+     * @param p2 (second playlist to concat)
+     * @return a playlist formed by the concatenation of the two arguments.
+     */
     public static Playlist concatPlaylists(Playlist p1, Playlist p2) {
         Playlist newP = new Playlist();
         newP.getSongs().addAll((Collection) p1.getSongs());
