@@ -91,7 +91,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     }
 
     /**
-     * QQQ Code for getting lat. and long. from https://inducesmile.com/android/android-location-service-api-using-google-play-services/
+     *Code for getting lat. and long. from https://inducesmile.com/android/android-location-service-api-using-google-play-services/
+     *Starts to connect to the Google Map API.
      */
     @Override
     protected void onStart() {
@@ -99,7 +100,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         super.onStart();
     }
     /**
-     * QQQ Code for getting lat. and long. from https://inducesmile.com/android/android-location-service-api-using-google-play-services/
+     * Stops connection to Google Maps API.
+     * Code for getting lat. and long. from https://inducesmile.com/android/android-location-service-api-using-google-play-services/
      */
     @Override
     protected void onStop() {
@@ -107,7 +109,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         super.onStop();
     }
     /**
-     * QQQ Code for getting lat. and long. from https://inducesmile.com/android/android-location-service-api-using-google-play-services/
+     * When the API is connected, the longitude and latitude will be recieved.
+     * Code for getting lat. and long. from https://inducesmile.com/android/android-location-service-api-using-google-play-services/
      */
     @Override
     public void onConnected(Bundle bundle) {
@@ -155,13 +158,15 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     }
 
     /**
-     *  QQQ Code for getting lat. and long. from https://inducesmile.com/android/android-location-service-api-using-google-play-services/
+     * If the connection is suspended
+     *  Code for getting lat. and long. from https://inducesmile.com/android/android-location-service-api-using-google-play-services/
      */
     @Override
     public void onConnectionSuspended(int i) {}
 
     /**
-     * QQQ Code for getting lat. and long. from https://inducesmile.com/android/android-location-service-api-using-google-play-services/
+     * Checks if the current activity allows for getting location.
+     * Code for getting lat. and long. from https://inducesmile.com/android/android-location-service-api-using-google-play-services/
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -190,7 +195,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     }
 
     /**
-     * QQQ Code for getting lat. and long. from https://inducesmile.com/android/android-location-service-api-using-google-play-services/
+     * Checks for the permission result of the request
+     * Code for getting lat. and long. from https://inducesmile.com/android/android-location-service-api-using-google-play-services/
      */
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
@@ -212,6 +218,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     }
 
     /**
+     * changes location if the user has changed his/her current location.
      * Code for getting lat. and long. from https://inducesmile.com/android/android-location-service-api-using-google-play-services/
      */
     @Override
@@ -224,42 +231,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     }
 
     /**
-     * QQQQ This thing isn't used anymore. Can we get rid of it?
-     */
-    public static void getAddressFromLocation(final Location location, final Context context, final Handler handler) {
-        Thread thread = new Thread() {
-            @Override
-            public void run() {
-                Geocoder geocoder = new Geocoder(context, Locale.getDefault());
-                String result = null;
-                try {
-                    List<Address> list = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-                    if (list != null && list.size() > 0) {
-                        Address address = list.get(0);
-                        // sending back first address line and locality
-                        result = address.getAddressLine(0) + ", " + address.getLocality() + ", " + address.getCountryName();
-                    }
-                } catch (IOException e) {
-                    Log.e(TAG, "Impossible to connect to Geocoder", e);
-                } finally {
-                    Message msg = Message.obtain();
-                    msg.setTarget(handler);
-                    if (result != null) {
-                        msg.what = 1;
-                        Bundle bundle = new Bundle();
-                        bundle.putString("address", result);
-                        msg.setData(bundle);
-                    } else
-                        msg.what = 0;
-                    msg.sendToTarget();
-                }
-            }
-        };
-        thread.start();
-    }
-
-    /**
-     * QQQQ
+     * If the connection to Google Maps fails...
+     * Does nothing, only overrides
      * @param connectionResult
      */
     @Override
@@ -268,8 +241,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     }
 
     /**
-     *
-     * @return QQQ
+     *Asks Google Maps API for the longitude and the latitude
+     * from https://inducesmile.com/android/android-location-service-api-using-google-play-services/
+     * @return
      */
     protected LocationRequest createLocationRequest() {
         @SuppressLint("RestrictedApi") LocationRequest mLocationRequest = new LocationRequest();
@@ -367,7 +341,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     }
 
     /**
-     * QQQ
+     * Future: If the user wants to input a specific location, it will lead to the location activity
      * @param view
      */
     public void onTemplate(View view){
@@ -382,7 +356,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     }
 
     /**
-     * QQQ
+     *checks for the permission of the google maps API.
      * @return
      */
     public boolean checkLocationPermission(){
@@ -418,7 +392,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     }
 
     /**
-     * QQQ
+     * If the user feels the need to input manual time.
      * @param view
      */
     public void getManuel(View view){
