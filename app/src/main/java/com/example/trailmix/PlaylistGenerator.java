@@ -1,7 +1,7 @@
 package com.example.trailmix;
 
 /**
- * @author Andy Goering
+ * @author Andy Goering with additions by Josh DeOliveira
  * @date 05/18/2018
  * Class with a set of static methods for generating and manipulating playlists and for related tasks.
  */

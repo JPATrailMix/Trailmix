@@ -1,6 +1,8 @@
 package com.example.trailmix;
 
 /**
+ * @author Andy Goering
+ * @date 05/18/2018
  * Class modeling independent node for the SongTree. The node knows about the nodes above and below it, but nothing else.
  * It has a means of returning playlists to the SongTree.
  */
