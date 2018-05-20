@@ -53,7 +53,7 @@ public class Playlist implements Comparable {
     }
 
     public String toString() {
-        return "(Time = " + time + " Songs = " + songs.toString() + ")";
+        return "(Time = " + time/60.0 + " Songs = " + songs.toString() + ")";
     }
 
     @SuppressWarnings("unchecked")

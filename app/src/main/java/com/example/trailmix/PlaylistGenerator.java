@@ -98,7 +98,7 @@ public class PlaylistGenerator {
                     }
 
                     if(randomList.length()!=0) {
-                        for (; i < randomList.length(); place++) {
+                        for (; place < randomList.length(); place++) {
                             shortSongList[place] = randomList.getSongs().get(place);
                         }
                         for (; place < shortListLength; place++) {
@@ -234,7 +234,7 @@ public class PlaylistGenerator {
 
                 //But if, because there are so few songs in the users library, you had duplicates of the same song right next to each other, run the replace method again as long as it hasn't been trying for too long.
                 if(playlistSongs.get(0).getPath().equals(replacedSongPath) && System.currentTimeMillis()-time < 500)                     replaceSong(p, songs, origSongs, p.getSongs().get(0).getTime(),0,time);
-                Log.d("Music", "added and removed songs");
+               // Log.d("Music", "added and removed songs");
             }
         }
        // Log.d("Music", "PlaylistGenerator.replaceSong finished");
