@@ -52,7 +52,7 @@ public class SongsPlayer {
      * @throws IOException
      */
     public void startPlayer() throws IOException {
-        //Log.d("Music", "SongsPlayer's song list:" + songs);
+        Log.d("Music", "SongsPlayer's song list:" + songs);
         stopped = false;
         if(songs.size() != 0) {
             songLength = songs.get(0).getTime();
