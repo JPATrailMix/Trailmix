@@ -42,7 +42,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyASVU_Ws92GaMXBNhtREbNYXR3WBsbqDP0" />
+            android:value="AIzaSyASVU_Ws92GaMXBNhtREbNYXR3WBsbqDP0"/>
         <!-- This is all of the activities -->
         <activity
             android:name=".FinishedActivity"

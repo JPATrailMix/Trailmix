@@ -56,6 +56,7 @@ public class AddressParcer extends AsyncTask<Void,Void,Void> {
             String json;
             Log.d("Address", "In the method");
             json = readURL("https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + lat + "," + lon + "&destinations="+ plusify(destination) +"&key=AIzaSyASVU_Ws92GaMXBNhtREbNYXR3WBsbqDP0");
+
             Log.d("Address", "Got the URL!");
             System.out.println(json);
             System.out.println(json.lastIndexOf("value") + "hi");
